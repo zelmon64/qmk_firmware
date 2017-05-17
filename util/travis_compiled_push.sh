@@ -40,11 +40,13 @@ if [[ "$TRAVIS_COMMIT_MESSAGE" != *"[skip build]"* ]] ; then
 	git submodule update --init --recursive
 	#rm -rf keyboard
 	#rm -rf keyboards
-	yes | cp -rf ../qmk_firmware/keyboards .
+	#yes | cp -rf ../qmk_firmware/keyboards .
 	#mkdir keyboards/ergodox_ez/
-	cp ../qmk_firmware/util/ergodox_ez.html keyboards/ergodox_ez/index.html
-	cp ../qmk_firmware/readme.md qmk_readme.md
-	./generate.sh
+	#cp ../qmk_firmware/util/ergodox_ez.html keyboards/ergodox_ez/index.html
+	#cp ../qmk_firmware/readme.md qmk_readme.md
+	#./generate.sh
+	rm -f _compiled/*.hex
+	for file in ../qmk_firmware/keyboards/*/keymaps/*/*.hex; do mv -v "$file" "_compiled/${file##*/}"; done
 
 	git add -A
 	git commit -m "generated from qmk/qmk_firmware@${rev}" 
