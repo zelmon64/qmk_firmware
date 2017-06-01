@@ -19,22 +19,16 @@ extern keymap_config_t keymap_config;
 
 enum planck_layers {
   _QWERTY,
-//  _COLEMAK,
   _CMODDH,
-//  _DVORAK,
   _LOWER,
   _RAISE,
-//  _PLOVER,
   _MOUSE,
   _ADJUST
 };
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
-//  COLEMAK,
   CMODDH,
-//  DVORAK,
-//  PLOVER,
   MOUSE,
   LOWER,
   RAISE,
@@ -47,7 +41,6 @@ enum planck_keycodes {
   MACRO_MOUSE_MOVE_UR,
   MACRO_MOUSE_MOVE_DL,
   MACRO_MOUSE_MOVE_DR,
-//  EXT_PLV
 };
 
 #define M_BACKL             M(MACRO_BACKLIGHT)
@@ -65,6 +58,11 @@ enum planck_keycodes {
 // Fillers to make layering more clear
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
+
+#define MACRO_BREATH_TOGGLE             21
+#define MACRO_BREATH_SPEED_INC          23
+#define MACRO_BREATH_SPEED_DEC          24
+#define MACRO_BREATH_DEFAULT            25
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -86,25 +84,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {_______,        KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT       }
 },
 
-/* Colemak
- * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   F  |   P  |   G  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc  |   A  |   R  |   S  |   T  |   D  |   H  |   N  |   E  |   I  |   O  |  "   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   K  |   M  |   ,  |   .  |   /  |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Up   | Down |Right |
- * `-----------------------------------------------------------------------------------'
- *
-[_COLEMAK] = {
-  {KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC},
-  {KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT},
-  {KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT },
-  {BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT}
-},
-*/
-
 /* Colemak Mod-DH
  * ,-----------------------------------------------------------------------------------.
  * | Tab  |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  | Bksp |
@@ -122,25 +101,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {LSFT_T(KC_DEL), KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_M,    KC_H,    KC_COMM, KC_DOT,  KC_SLSH, RSFT_T(KC_ENT)},
   {MOUSE,          KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT       }
 },
-
-/* Dvorak
- * ,-----------------------------------------------------------------------------------.
- * | Tab  |   "  |   ,  |   .  |   P  |   Y  |   F  |   G  |   C  |   R  |   L  | Bksp |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc  |   A  |   O  |   E  |   U  |   I  |   D  |   H  |   T  |   N  |   S  |  /   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   ;  |   Q  |   J  |   K  |   X  |   B  |   M  |   W  |   V  |   Z  |Enter |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
- * `-----------------------------------------------------------------------------------'
- *
-[_DVORAK] = {
-  {KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,    KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSPC},
-  {KC_ESC,  KC_A,    KC_O,    KC_E,    KC_U,    KC_I,    KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH},
-  {KC_LSFT, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_ENT },
-  {BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT}
-},
-*/
 
 /* Lower
  * ,-----------------------------------------------------------------------------------.
@@ -178,26 +138,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {_______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGUP, KC_PGDN, KC_END }
 },
 
-/* Plover layer (http://opensteno.org)
- * ,-----------------------------------------------------------------------------------.
- * |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |   #  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |   S  |   T  |   P  |   H  |   *  |   *  |   F  |   P  |   L  |   T  |   D  |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |   S  |   K  |   W  |   R  |   *  |   *  |   R  |   B  |   G  |   S  |   Z  |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Exit |      |      |   A  |   O  |             |   E  |   U  |      |      |      |
- * `-----------------------------------------------------------------------------------'
- *
-
-[_PLOVER] = {
-  {KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1,    KC_1   },
-  {XXXXXXX, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC},
-  {XXXXXXX, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT},
-  {EXT_PLV, XXXXXXX, XXXXXXX, KC_C,    KC_V,    XXXXXXX, XXXXXXX, KC_N,    KC_M,    XXXXXXX, XXXXXXX, XXXXXXX}
-},
-*/
-
 /* Mouse and Number layer
  * ,-----------------------------------------------------------------------------------.
  * |  NL  |   7  |   8  |   9  |      |      |      |      |      |   ↑  |      |      |
@@ -211,8 +151,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_MOUSE] = {
-  {KC_NLCK, KC_P7, KC_P8,   KC_P9,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN5, KC_WH_L, KC_WH_R },
-  {KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN4, KC_BTN3, KC_WH_U },
+  {KC_NLCK, KC_P7, KC_P8,   KC_P9,   S(KC_6), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_WH_U, XXXXXXX, KC_WH_D },
+  {KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN4, KC_BTN3, KC_BTN5 },
   {KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN1, KC_MS_U, KC_BTN2 },
   {CMODDH,  KC_P0, _______, KC_PDOT, _______, KC_PENT, KC_PENT, _______, _______, KC_MS_L, KC_MS_D, KC_MS_R }
 },
@@ -227,14 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
- *
-[_ADJUST] = {
-  {_______, RESET,   _______, M_BRTOG, M_BSPDU, M_BSPDD, M_BDFLT, BACKLIT, _______, KC_CAPS,  KC_INS, KC_DEL },
-  {_______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK,  DVORAK,  PLOVER, _______},
-  {_______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______,  CMODDH, _______, _______, MOUSE},
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______}
-}
-*/
+ */
 [_ADJUST] = {
  {_______, RESET,   _______, M_BRTOG, M_BSPDU, M_BSPDD, M_BDFLT, BACKLIT, _______, KC_CAPS,  KC_INS, KC_DEL },
  {_______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  CMODDH,  MOUSE,   _______, _______},
@@ -249,15 +182,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 float tone_startup[][2]    = SONG(ZELDA_CHEST);
 float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-//float tone_dvorak[][2]     = SONG(DVORAK_SOUND);
-//float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
 float tone_colemakdh[][2]  = SONG(ZELDA_PUZZLE);
 float tone_mouse[][2]      = SONG(SONIC_RING);
-//float tone_plover[][2]     = SONG(PLOVER_SOUND);
-//float tone_plover_gb[][2]  = SONG(PLOVER_GOODBYE_SOUND);
 float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
 
-float tone_goodbye[][2] = SONG(ROCK_A_BYE_BABY);
+float tone_goodbye[][2] =    SONG(GOODBYE_SOUND);
 
 float tone_audio_on[][2]   = SONG(CLOSE_ENCOUNTERS_5_NOTE);
 float tone_music_on[][2]   = SONG(DOE_A_DEER);
@@ -267,7 +196,6 @@ float tone_numlk_on[][2]   = SONG(NUM_LOCK_ON_SOUND);
 float tone_numlk_off[][2]  = SONG(NUM_LOCK_OFF_SOUND);
 float tone_scroll_on[][2]  = SONG(SCROLL_LOCK_ON_SOUND);
 float tone_scroll_off[][2] = SONG(SCROLL_LOCK_OFF_SOUND);
-//float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
 
 #endif /* AUDIO_ENABLE */
 
@@ -276,6 +204,40 @@ void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
 }
+
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+  switch(id) {
+    case MACRO_BREATH_TOGGLE:
+        if (record->event.pressed)
+        {
+            breathing_toggle();
+        }
+        break;
+
+    case MACRO_BREATH_SPEED_INC:
+        if (record->event.pressed)
+        {
+            breathing_speed_inc(1);
+        }
+        break;
+
+    case MACRO_BREATH_SPEED_DEC:
+        if (record->event.pressed)
+        {
+            breathing_speed_dec(1);
+        }
+        break;
+
+    case MACRO_BREATH_DEFAULT:
+        if (record->event.pressed)
+        {
+            breathing_defaults();
+        }
+        break;
+  }
+  return MACRO_NONE;
+}
+
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -287,16 +249,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         persistent_default_layer_set(1UL<<_QWERTY);
       }
       return false;
-      break; /*
-    case COLEMAK:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_NOTE_ARRAY(tone_colemak, false, 0);
-        #endif
-        persistent_default_layer_set(1UL<<_COLEMAK);
-      }
-      return false;
-      break; */
+      break;
     case CMODDH:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
@@ -305,16 +258,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         persistent_default_layer_set(1UL<<_CMODDH);
       }
       return false;
-      break; /*
-    case DVORAK:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_NOTE_ARRAY(tone_dvorak, false, 0);
-        #endif
-        persistent_default_layer_set(1UL<<_DVORAK);
-      }
-      return false;
-      break; */
+      break;
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
@@ -335,30 +279,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case MACRO_BREATH_TOGGLE:
-        if (record->event.pressed)
-        {
-            breathing_toggle();
-        }
-        break;
-    case MACRO_BREATH_SPEED_INC:
-        if (record->event.pressed)
-        {
-            breathing_speed_inc(1);
-        }
-        break;
-    case MACRO_BREATH_SPEED_DEC:
-        if (record->event.pressed)
-        {
-            breathing_speed_dec(1);
-        }
-        break;
-    case MACRO_BREATH_DEFAULT:
-        if (record->event.pressed)
-        {
-            breathing_defaults();
-        }
-        break;
     case BACKLIT:
       if (record->event.pressed) {
         register_code(KC_RSFT);
@@ -369,35 +289,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_RSFT);
       }
       return false;
-      break; /*
-    case PLOVER:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          stop_all_notes();
-          PLAY_NOTE_ARRAY(tone_plover, false, 0);
-        #endif
-        layer_off(_RAISE);
-        layer_off(_LOWER);
-        layer_off(_ADJUST);
-        layer_on(_PLOVER);
-        if (!eeconfig_is_enabled()) {
-            eeconfig_init();
-        }
-        keymap_config.raw = eeconfig_read_keymap();
-        keymap_config.nkro = 1;
-        eeconfig_update_keymap(keymap_config.raw);
-      }
-      return false;
       break;
-    case EXT_PLV:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_NOTE_ARRAY(tone_plover_gb, false, 0);
-        #endif
-        layer_off(_PLOVER);
-      }
-      return false;
-      break; */
     case MOUSE:
       if (record->event.pressed) {
         #ifdef AUDIO_ENABLE
@@ -407,18 +299,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-//  }
-//  return true;
-//}
-/*
-#ifdef BACKLIGHT_ENABLE
-		case MACRO_BACKLIGHT:
-			if (record->event.pressed)
-			{
-				backlight_step();
-			}
-#endif
-*/
+
 #ifdef MOUSEKEY_ENABLE
 /*
         case MACRO_MOUSE:
