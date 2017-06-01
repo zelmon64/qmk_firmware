@@ -2,6 +2,7 @@
 
 * UK IOS layout
 * Zelda music
-* Additional Colemak Mod-DH layer
+* Colemak Mod-DH layer
 * Rearranged navigation and media keys
+* Traditional navigation cluster
 * LShift and RShift double up as Dell and Enter when tapped
