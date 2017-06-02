@@ -22,9 +22,9 @@ extern keymap_config_t keymap_config;
 enum planck_layers {
   _QWERTY,
   _CMODDH,
+  _MOUSE,
   _LOWER,
   _RAISE,
-  _MOUSE,
   _ADJUST
 };
 
@@ -104,6 +104,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {MOUSE,          KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEAD, KC_APP, KC_RCTL,   KC_INS        }
 },
 
+/* Mouse and Number layer
+ * ,-----------------------------------------------------------------------------------.
+ * |      |  NL  |   7  |   8  |   9  |   =  |M5_Clk|M1_Clk|  ↑   |M2_Clk|MW_Up |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |  Alt |   /  |   4  |   5  |   6  |   -  |M4_Clk|  ←   |  ↓   |  →   |MW_Dn | Alt  |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Shift|   *  |   1  |   2  |   3  |   +  | Ctrl |M3_Clk|MW_Lft|MW_Rgt|  Up  |Shift |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |CModDH|   ^  |   0  |   .  |Lower |    Enter    |Raise | Ctrl | Left | Down |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+
+[_MOUSE] = {
+  {XXXXXXX, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_EQL,  KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______},
+  {KC_LALT, KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LGUI},
+  {_______, KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, KC_LCTL, KC_BTN3, KC_WH_L, KC_WH_R, KC_UP,   _______},
+  {CMODDH,  S(KC_6), KC_P0, KC_PDOT, LOWER,   KC_PENT, KC_PENT, RAISE,   KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT}
+},
+
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |   ¬  |  F1  |  F2  |  F3  |  F4  |   £  |   $  | Prev |  Up  | Next | Vol+ | Del  |
@@ -140,25 +159,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, _______, _______, _______        }
 },
 
-/* Mouse and Number layer
- * ,-----------------------------------------------------------------------------------.
- * |      |  NL  |   7  |   8  |   9  |   =  |M5_Clk|M1_Clk|  ↑   |M2_Clk|MW_Up |      |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |  Alt |   /  |   4  |   5  |   6  |   -  |M4_Clk|  ←   |  ↓   |  →   |MW_Dn | Alt  |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   *  |   1  |   2  |   3  |   +  | Ctrl |M3_Clk|MW_Lft|MW_Rgt|  Up  |Shift |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |CModDH|   ^  |   0  |   .  |      |    Enter    |      | Ctrl | Left | Down |Right |
- * `-----------------------------------------------------------------------------------'
- */
-
-[_MOUSE] = {
-  {XXXXXXX, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_EQL,  KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, XXXXXXX},
-  {KC_LALT, KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LALT},
-  {_______, KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, KC_LCTL, KC_BTN3, KC_WH_L, KC_WH_R, KC_UP,   _______},
-  {CMODDH,  S(KC_6), KC_P0, KC_PDOT, _______, KC_PENT, KC_PENT, _______, KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT}
-},
-
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
  * |      | Reset|      | BRTOG|BRSPD+|BRSPD-|BRDFLT|BACKLT|      | Sroll| Caps | Del  |
@@ -167,14 +167,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      |      |
+ * |      |      |      |      |      |             |      |      |      |      | NKRO |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
  {_______, RESET,   _______, M_BRTOG, M_BSPDU, M_BSPDD, M_BDFLT, BACKLIT, _______, KC_SLCK, KC_CAPS, KC_DEL },
  {_______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  CMODDH,  MOUSE,   _______, KC_INS },
  {_______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______},
- {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______}
+ {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, TG_NKRO}
 }
 
 
@@ -261,6 +261,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case MOUSE:
+      if (record->event.pressed) {
+        #ifdef AUDIO_ENABLE
+          PLAY_NOTE_ARRAY(tone_mouse, false, 0);
+        #endif
+        persistent_default_layer_set(1UL<<_MOUSE);
+      }
+      return false;
+      break;
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
@@ -289,15 +298,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         #endif
       } else {
         unregister_code(KC_RSFT);
-      }
-      return false;
-      break;
-    case MOUSE:
-      if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_NOTE_ARRAY(tone_mouse, false, 0);
-        #endif
-        persistent_default_layer_set(1UL<<_MOUSE);
       }
       return false;
       break;

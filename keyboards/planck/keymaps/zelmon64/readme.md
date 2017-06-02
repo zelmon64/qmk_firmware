@@ -6,3 +6,4 @@
 * Rearranged navigation and media keys
 * Home Row navigation cluster
 * LShift and RShift double up as Dell and Enter when tapped
+* Optional NKRO
