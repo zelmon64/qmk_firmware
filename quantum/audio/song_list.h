@@ -176,6 +176,12 @@
     Q__NOTE(_GS5),   \
     HD_NOTE(_C6),
 
+#define ZELDA_ITEM \
+    Q__NOTE(_A6),  \
+    Q__NOTE(_AS6), \
+    Q__NOTE(_B6),  \
+    HD_NOTE(_C7),
+
 #define ZELDA_CHEST \
     Q__NOTE(_G5),   \
     Q__NOTE(_A5),   \
