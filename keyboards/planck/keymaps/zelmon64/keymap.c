@@ -104,37 +104,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Lower
  * ,-----------------------------------------------------------------------------------.
- * |  ¬   |   !  |   "  |   £  |   $  |   %  |   ^  |   &  |   *  |      |      | Del  |
+ * |   ¬  |   !  |   "  |   £  |   $  |   %  |   ^  |   &  |   *  |   €  |   ¦  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |PrntSc|  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   (  |   )  |      |  ~   |
+ * |PrntSc|  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   {  |   }  |      |  ~   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Bksp |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   +  |   {  |   }  | Vol+ | Play |
+ * | Bksp |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   +  |   ;  |   :  | Vol+ | Play |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |     Tab     |      |   |  | Prev | Vol- | Next |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = {
-  {KC_TILD,         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,            _______, _______, KC_DEL         },
-  {KC_PSCR,         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_LPRN,            KC_RPRN, _______, KC_PIPE        },
-  {LSFT_T(KC_BSPC), KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PLUS, KC_LCBR,            KC_RCBR, KC_VOLU, RSFT_T(KC_MPLY)},
+  {KC_TILD,         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,    RALT(KC_4), RALT(KC_GRV), KC_DEL         },
+  {KC_PSCR,         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_LCBR,            KC_RCBR, _______, KC_PIPE        },
+  {LSFT_T(KC_BSPC), KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PLUS, KC_SCLN,         S(KC_SCLN), KC_VOLU, RSFT_T(KC_MPLY)},
   {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, RCTL_T(S(KC_NUBS)), KC_MPRV, KC_VOLD, KC_MNXT        }
 },
 
 /* Raise
  * ,-----------------------------------------------------------------------------------.
- * |  `   |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
+ * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |PrntSc|  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   [  |   ]  |   0  |  #   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Bksp |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   =  |   ;  |   :  |Pg Up | Mute |
+ * | Bksp |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   =  |   (  |   )  |Pg Up | Mute |¦
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |     Tab     |      |   \  | Home |Pg Dn | End  |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = {
-  { KC_GRV,         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,            KC_9,       KC_0,    KC_DEL         },
-  {KC_PSCR,         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_LBRC,         KC_RBRC,    KC_0,    KC_BSLS        },
-  {LSFT_T(KC_BSPC), KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_EQL,  KC_SCLN,         S(KC_SCLN), KC_PGUP, RSFT_T(KC_MUTE)},
+  {KC_GRV,          KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,            KC_9,       KC_0,    KC_DEL         },
+  {LALT(KC_PSCR),   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_LBRC,         KC_RBRC,    KC_0,    KC_BSLS        },
+  {LSFT_T(KC_BSPC), KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_EQL,  KC_LPRN,         KC_RPRN, KC_PGUP, RSFT_T(KC_MUTE)},
   {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, RCTL_T(KC_NUBS), KC_HOME,    KC_PGDN, KC_END         }
 },
 
@@ -146,15 +146,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |   *  |   1  |   2  |   3  |   +  |      |      |      |Shift |L_Clk |  ↑   |R_Clk |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |CModDH|   0  |   0  |   .  |      |    Enter    |      | Ctrl |  ←   |  ↓   |  →   |
+ * |CModDH|   0  |   =  |   .  |      |    Enter    |      | Ctrl |  ←   |  ↓   |  →   |
  * `-----------------------------------------------------------------------------------'
  */
 
 [_MOUSE] = {
-  {KC_NLCK, KC_P7, KC_P8, KC_P9,   S(KC_6), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN5, XXXXXXX, KC_WH_U},
-  {KC_PSLS, KC_P4, KC_P5, KC_P6,   KC_PMNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN4, KC_BTN3, KC_WH_D},
-  {KC_PAST, KC_P1, KC_P2, KC_P3,   KC_PPLS, XXXXXXX, XXXXXXX, XXXXXXX, KC_LSFT, KC_BTN1, KC_MS_U, KC_BTN2},
-  {CMODDH,  KC_P0, KC_P0, KC_PDOT, _______, KC_PENT, KC_PENT, _______, KC_LCTL, KC_MS_L, KC_MS_D, KC_MS_R}
+  {KC_NLCK, KC_P7, KC_P8,  KC_P9,   S(KC_6), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN5, XXXXXXX, KC_WH_U},
+  {KC_PSLS, KC_P4, KC_P5 , KC_P6,   KC_PMNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN4, KC_BTN3, KC_WH_D},
+  {KC_PAST, KC_P1, KC_P2,  KC_P3,   KC_PPLS, XXXXXXX, XXXXXXX, XXXXXXX, KC_LSFT, KC_BTN1, KC_MS_U, KC_BTN2},
+  {CMODDH,  KC_P0, KC_EQL, KC_PDOT, _______, KC_PENT, KC_PENT, _______, KC_LCTL, KC_MS_L, KC_MS_D, KC_MS_R}
 },
 
 /* Adjust (Lower + Raise)
