@@ -10,6 +10,8 @@
 #include "led.h"
 #include "mousekey.h"
 
+#include "keymap_uk.h"
+
 extern keymap_config_t keymap_config;
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
@@ -90,71 +92,71 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Esc  |   A  |   R  |   S  |   T  |   G  |   K  |   N  |   E  |   I  |   O  |  '   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   D  |   V  |   M  |   H  |   ,  |   .  |  Up  |Enter |
+ * | Shift|   Z  |   X  |   C  |   D  |   V  |   M  |   H  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Mouse| Menu | Alt  | GUI  |Lower |    Space    |Raise |   /  | Left | Down |Right |
+ * | Mouse| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | lead | Menu | Ctrl | Ins  |
  * `-----------------------------------------------------------------------------------'
  */
 [_CMODDH] = {
-  {KC_TAB,         KC_Q,   KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,            KC_Y,    KC_SCLN, KC_BSPC       },
-  {KC_ESC,         KC_A,   KC_R,    KC_S,    KC_T,    KC_G,    KC_K,    KC_N,    KC_E,            KC_I,    KC_O,    KC_QUOT       },
-  {LSFT_T(KC_DEL), KC_Z,   KC_X,    KC_C,    KC_D,    KC_V,    KC_M,    KC_H,    KC_COMM,         KC_DOT,  KC_UP,   RSFT_T(KC_ENT)},
-  {MOUSE,  LCTL_T(KC_APP), KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   RCTL_T(KC_SLSH), KC_LEFT, KC_DOWN, KC_RGHT       }
+  {KC_TAB,         KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN,   KC_BSPC       },
+  {KC_ESC,         KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_K,    KC_N,    KC_E,    KC_I,   KC_O,      KC_QUOT       },
+  {LSFT_T(KC_DEL), KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_M,    KC_H,    KC_COMM, KC_DOT, KC_SLSH,   RSFT_T(KC_ENT)},
+  {MOUSE,          KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEAD, KC_APP, KC_RCTL,   KC_INS        }
 },
 
 /* Lower
  * ,-----------------------------------------------------------------------------------.
- * |   ¬  |   !  |   "  |   £  |   $  |   %  |   ^  |   &  |   *  |   €  |   ¦  | Del  |
+ * |   ¬  |  F1  |  F2  |  F3  |  F4  |   £  |   $  | Prev |  Up  | Next | Vol+ | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |PrntSc|  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   {  |   }  |      |  ~   |
+ * |PrntSc|  F5  |  F6  |  F7  |  F8  |   !  |   %  | Left | Down |Right | Vol- |  &   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Bksp |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   +  |   ;  |   :  | Vol+ | Play |
+ * | Bksp |  F9  |  F10 |  F11 |  F12 |   ^  |   *  |   +  |   _  |   ~  |   |  | Play |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |     Tab     |      |   |  | Prev | Vol- | Next |
+ * |      |      |      |      |      |     Tab     |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = {
-  {KC_TILD,         KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,    RALT(KC_4), RALT(KC_GRV), KC_DEL         },
-  {KC_PSCR,         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_LCBR,            KC_RCBR, _______, KC_PIPE        },
-  {LSFT_T(KC_BSPC), KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PLUS, KC_SCLN,         S(KC_SCLN), KC_VOLU, RSFT_T(KC_MPLY)},
-  {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, RCTL_T(S(KC_NUBS)), KC_MPRV, KC_VOLD, KC_MNXT        }
+  {UK_NOT,          KC_F1,   KC_F2,   KC_F3,   KC_F4,   UK_PND,  KC_DLR,  KC_MPRV, KC_UP,   KC_MNXT, KC_VOLU, KC_DEL         },
+  {KC_PSCR,         KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_EXLM, KC_PERC, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_AMPR        },
+  {LSFT_T(KC_BSPC), KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_CIRC, KC_ASTR, KC_PLUS, KC_UNDS, UK_TILD, UK_PIPE, RSFT_T(KC_MPLY)},
+  {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, _______, _______, _______        }
 },
 
 /* Raise
  * ,-----------------------------------------------------------------------------------.
- * |   `  |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  | Del  |
+ * |   `  |   ¦  |   7  |   8  |   9  |   {  |   }  | Home |  Up  | End  |Pg Up | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |PrntSc|  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   -  |   [  |   ]  |   0  |  #   |
+ * |PrntSc|   €  |   4  |   5  |   6  |   [  |   ]  | Left | Down |Right |Pg Dn |  "   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Bksp |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |   =  |   (  |   )  |Pg Up | Mute |¦
+ * | Bksp |   0  |   1  |   2  |   3  |   (  |   )  |   =  |   -  |   #  |   \  | Mute |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |     Tab     |      |   \  | Home |Pg Dn | End  |
+ * |      |      |      |      |      |     Tab     |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = {
-  {KC_GRV,          KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,            KC_9,       KC_0,    KC_DEL         },
-  {LALT(KC_PSCR),   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_LBRC,         KC_RBRC,    KC_0,    KC_BSLS        },
-  {LSFT_T(KC_BSPC), KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_EQL,  KC_LPRN,         KC_RPRN, KC_PGUP, RSFT_T(KC_MUTE)},
-  {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, RCTL_T(KC_NUBS), KC_HOME,    KC_PGDN, KC_END         }
+  {KC_GRV,          UK_BRKP, KC_7,    KC_8,    KC_9,    KC_LCBR, KC_RCBR, KC_HOME, KC_UP,   KC_END,  KC_PGUP, KC_DEL         },
+  {LALT(KC_PSCR),   UK_EURO, KC_4,    KC_5,    KC_6,    KC_LBRC, KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, UK_QUOT        },
+  {LSFT_T(KC_BSPC), KC_0,    KC_1,    KC_2,    KC_3,    KC_LPRN, KC_RPRN, KC_EQL,  KC_MINS, UK_HASH, UK_BSLS, RSFT_T(KC_MUTE)},
+  {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, _______, _______, _______        }
 },
 
 /* Mouse and Number layer
  * ,-----------------------------------------------------------------------------------.
- * |  NL  |   7  |   8  |   9  |   ^  |      |      |      |      |M5_Clk|      |MW_Up |
+ * |      |  NL  |   7  |   8  |   9  |   =  |M5_Clk|M1_Clk|  ↑   |M2_Clk|MW_Up |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |   /  |   4  |   5  |   6  |   -  |      |      |      |      |M4_Clk|M_Clk |MW_Dn |
+ * |  Alt |   /  |   4  |   5  |   6  |   -  |M4_Clk|  ←   |  ↓   |  →   |MW_Dn | Alt  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |   *  |   1  |   2  |   3  |   +  |      |      |      |Shift |L_Clk |  ↑   |R_Clk |
+ * | Shift|   *  |   1  |   2  |   3  |   +  | Ctrl |M3_Clk|MW_Lft|MW_Rgt|  Up  |Shift |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |CModDH|   0  |   =  |   .  |      |    Enter    |      | Ctrl |  ←   |  ↓   |  →   |
+ * |CModDH|   ^  |   0  |   .  |      |    Enter    |      | Ctrl | Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
  */
 
 [_MOUSE] = {
-  {KC_NLCK, KC_P7, KC_P8,  KC_P9,   S(KC_6), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN5, XXXXXXX, KC_WH_U},
-  {KC_PSLS, KC_P4, KC_P5 , KC_P6,   KC_PMNS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BTN4, KC_BTN3, KC_WH_D},
-  {KC_PAST, KC_P1, KC_P2,  KC_P3,   KC_PPLS, XXXXXXX, XXXXXXX, XXXXXXX, KC_LSFT, KC_BTN1, KC_MS_U, KC_BTN2},
-  {CMODDH,  KC_P0, KC_EQL, KC_PDOT, _______, KC_PENT, KC_PENT, _______, KC_LCTL, KC_MS_L, KC_MS_D, KC_MS_R}
+  {XXXXXXX, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_EQL,  KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, XXXXXXX},
+  {KC_LALT, KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LALT},
+  {_______, KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, KC_LCTL, KC_BTN3, KC_WH_L, KC_WH_R, KC_UP,   _______},
+  {CMODDH,  S(KC_6), KC_P0, KC_PDOT, _______, KC_PENT, KC_PENT, _______, KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT}
 },
 
 /* Adjust (Lower + Raise)

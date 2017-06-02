@@ -4,5 +4,5 @@
 * Zelda music
 * Colemak Mod-DH layer
 * Rearranged navigation and media keys
-* Traditional navigation cluster
+* Home Row navigation cluster
 * LShift and RShift double up as Dell and Enter when tapped
