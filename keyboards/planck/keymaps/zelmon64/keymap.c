@@ -87,37 +87,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Lower
  * ,-----------------------------------------------------------------------------------.
- * |   ¬  |  F1  |  F2  |  F3  |  F4  |   £  |   $  | Prev |  Up  | Next | Vol+ | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |PrntSc|  F5  |  F6  |  F7  |  F8  |   !  |   %  | Left | Down |Right | Vol- |  &   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Bksp |  F9  |  F10 |  F11 |  F12 |   ^  |   *  |   +  |   _  |   ~  |   |  | Play |
+ * |   `  |   ¦  |   7  |   8  |   9  |   {  |   $  | Prev |  Up  | Next | Vol+ | Del  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |PrntSc|   €  |   4  |   5  |   6  |   [  |   %  | Left | Down |Right | Vol- |  &   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Bksp |   0  |   1  |   2  |   3  |   (  |   *  |   +  |   _  |   ~  |   |  | Play |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |     Tab     |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = {
-  {UK_NOT,          KC_F1,   KC_F2,   KC_F3,   KC_F4,   UK_PND,  KC_DLR,  KC_MPRV, KC_UP,   KC_MNXT, KC_VOLU, KC_DEL         },
-  {KC_PSCR,         KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_EXLM, KC_PERC, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_AMPR        },
-  {LSFT_T(KC_BSPC), KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_CIRC, KC_ASTR, KC_PLUS, KC_UNDS, UK_TILD, UK_PIPE, RSFT_T(KC_MPLY)},
+  {KC_GRV,          UK_BRKP, KC_7,    KC_8,    KC_9,    KC_LCBR, KC_DLR,  KC_MPRV, KC_UP,   KC_MNXT, KC_VOLU, KC_DEL         },
+  {LALT(KC_PSCR),   UK_EURO, KC_4,    KC_5,    KC_6,    KC_LBRC, KC_PERC, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD, KC_AMPR        },
+  {LSFT_T(KC_BSPC), KC_0,    KC_1,    KC_2,    KC_3,    KC_LPRN, KC_ASTR, KC_PLUS, KC_UNDS, UK_TILD, UK_PIPE, RSFT_T(KC_MPLY)},
   {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, _______, _______, _______        }
 },
 
 /* Raise
  * ,-----------------------------------------------------------------------------------.
- * |   `  |   ¦  |   7  |   8  |   9  |   {  |   }  | Home |  Up  | End  |Pg Up | Del  |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |PrntSc|   €  |   4  |   5  |   6  |   [  |   ]  | Left | Down |Right |Pg Dn |  "   |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Bksp |   0  |   1  |   2  |   3  |   (  |   )  |   =  |   -  |   #  |   \  | Mute |
+ * |   ¬  |  F1  |  F2  |  F3  |  F4  |   £  |   }  | Home |  Up  | End  |Pg Up | Del  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |PrntSc|  F5  |  F6  |  F7  |  F8  |   !  |   ]  | Left | Down |Right |Pg Dn |  "   |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Bksp |  F9  |  F10 |  F11 |  F12 |   ^  |   )  |   =  |   -  |   #  |   \  | Mute |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |     Tab     |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = {
-  {KC_GRV,          UK_BRKP, KC_7,    KC_8,    KC_9,    KC_LCBR, KC_RCBR, KC_HOME, KC_UP,   KC_END,  KC_PGUP, KC_DEL         },
-  {LALT(KC_PSCR),   UK_EURO, KC_4,    KC_5,    KC_6,    KC_LBRC, KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, UK_QUOT        },
-  {LSFT_T(KC_BSPC), KC_0,    KC_1,    KC_2,    KC_3,    KC_LPRN, KC_RPRN, KC_EQL,  KC_MINS, UK_HASH, UK_BSLS, RSFT_T(KC_MUTE)},
+  {UK_NOT,          KC_F1,   KC_F2,   KC_F3,   KC_F4,   UK_PND,  KC_RCBR, KC_HOME, KC_UP,   KC_END,  KC_PGUP, KC_DEL         },
+  {KC_PSCR,         KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_EXLM, KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, UK_QUOT        },
+  {LSFT_T(KC_BSPC), KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_CIRC, KC_RPRN, KC_EQL,  KC_MINS, UK_HASH, UK_BSLS, RSFT_T(KC_MUTE)},
   {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, _______, _______, _______        }
 },
 
