@@ -11,7 +11,7 @@
 #define PRODUCT         The Planck Keyboard
 #define DESCRIPTION     A compact ortholinear keyboard
 
-#define BACKLIGHT_BREATHING
+//#define BACKLIGHT_BREATHING
 
 /*
  * MIDI options

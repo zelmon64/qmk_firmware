@@ -35,36 +35,39 @@ enum planck_keycodes {
   LOWER,
   RAISE,
   BACKLIT,
-  MACRO_BREATH_TOGGLE,
-  MACRO_BREATH_SPEED_INC,
-  MACRO_BREATH_SPEED_DEC,
-  MACRO_BREATH_DEFAULT,
+  // MACRO_BREATH_TOGGLE,
+  // MACRO_BREATH_SPEED_INC,
+  // MACRO_BREATH_SPEED_DEC,
+//   MACRO_BREATH_DEFAULT,
+/*
   MACRO_MOUSE_MOVE_UL,
   MACRO_MOUSE_MOVE_UR,
   MACRO_MOUSE_MOVE_DL,
   MACRO_MOUSE_MOVE_DR,
+  */
 };
 
-#define M_BACKL             M(MACRO_BACKLIGHT)
-#define M_BRTOG             M(MACRO_BREATH_TOGGLE)
-#define M_BSPDU             M(MACRO_BREATH_SPEED_INC)
-#define M_BSPDD             M(MACRO_BREATH_SPEED_DEC)
-#define M_BDFLT             M(MACRO_BREATH_DEFAULT)
+// #define M_BACKL             M(MACRO_BACKLIGHT)
+// #define M_BRTOG             M(MACRO_BREATH_TOGGLE)
+// #define M_BSPDU             M(MACRO_BREATH_SPEED_INC)
+// #define M_BSPDD             M(MACRO_BREATH_SPEED_DEC)
+// #define M_BDFLT             M(MACRO_BREATH_DEFAULT)
+/*
 #define M_MS_UL             M(MACRO_MOUSE_MOVE_UL)
 #define M_MS_UR             M(MACRO_MOUSE_MOVE_UR)
 #define M_MS_DL             M(MACRO_MOUSE_MOVE_DL)
 #define M_MS_DR             M(MACRO_MOUSE_MOVE_DR)
-
+*/
 #define TG_NKRO             MAGIC_TOGGLE_NKRO
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 
-#define MACRO_BREATH_TOGGLE             21
-#define MACRO_BREATH_SPEED_INC          23
-#define MACRO_BREATH_SPEED_DEC          24
-#define MACRO_BREATH_DEFAULT            25
+// #define MACRO_BREATH_TOGGLE             21
+// #define MACRO_BREATH_SPEED_INC          23
+// #define MACRO_BREATH_SPEED_DEC          24
+// #define MACRO_BREATH_DEFAULT            25
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -171,7 +174,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
- {_______, RESET,   _______, M_BRTOG, M_BSPDU, M_BSPDD, M_BDFLT, BACKLIT, _______, KC_SLCK, KC_CAPS, KC_DEL },
+ {_______, RESET,   _______, _______, _______, _______, _______, BACKLIT, _______, KC_SLCK, KC_CAPS, KC_DEL },
  {_______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  CMODDH,  MOUSE,   _______, KC_INS },
  {_______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______},
  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, TG_NKRO}
@@ -182,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef AUDIO_ENABLE
 
-float tone_startup[][2]    = SONG(ZELDA_CHEST);
+float tone_startup[][2]    = SONG(STARTUP_SOUND);
 float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
 float tone_colemakdh[][2]  = SONG(ZELDA_ITEM);
 float tone_mouse[][2]      = SONG(ZELDA_PUZZLE);
@@ -206,7 +209,7 @@ void persistent_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
   default_layer_set(default_layer);
 }
-
+/*
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
   switch(id) {
     case MACRO_BREATH_TOGGLE:
@@ -239,7 +242,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
   }
   return MACRO_NONE;
 }
-
+*/
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -302,7 +305,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
 
-#ifdef MOUSEKEY_ENABLE
+//#ifdef MOUSEKEY_ENABLE
 /*
         case MACRO_MOUSE:
             if (record->event.pressed)
@@ -310,7 +313,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 layer_invert(LAYER_MOUSE);
             }
             break;
-*/
+*
         case MACRO_MOUSE_MOVE_UL:
             if (record->event.pressed)
             {
@@ -362,8 +365,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
               mousekey_off(KC_MS_RIGHT);
             }
             break;
-
-#endif /* MOUSEKEY_ENABLE */
+*/
+//#endif /* MOUSEKEY_ENABLE */
 }
 return true;
 }
