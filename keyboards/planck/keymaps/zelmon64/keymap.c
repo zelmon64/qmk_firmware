@@ -22,52 +22,30 @@ extern keymap_config_t keymap_config;
 enum planck_layers {
   _QWERTY,
   _CMODDH,
-  _MOUSE,
   _LOWER,
   _RAISE,
+  _MOUSE,
+  _LOWERM,
+  _RAISEM,
   _ADJUST
 };
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
   CMODDH,
-  MOUSE,
   LOWER,
   RAISE,
+  MOUSE,
+  LOWERM,
+  RAISEM,
   BACKLIT,
-  // MACRO_BREATH_TOGGLE,
-  // MACRO_BREATH_SPEED_INC,
-  // MACRO_BREATH_SPEED_DEC,
-//   MACRO_BREATH_DEFAULT,
-/*
-  MACRO_MOUSE_MOVE_UL,
-  MACRO_MOUSE_MOVE_UR,
-  MACRO_MOUSE_MOVE_DL,
-  MACRO_MOUSE_MOVE_DR,
-  */
 };
 
-// #define M_BACKL             M(MACRO_BACKLIGHT)
-// #define M_BRTOG             M(MACRO_BREATH_TOGGLE)
-// #define M_BSPDU             M(MACRO_BREATH_SPEED_INC)
-// #define M_BSPDD             M(MACRO_BREATH_SPEED_DEC)
-// #define M_BDFLT             M(MACRO_BREATH_DEFAULT)
-/*
-#define M_MS_UL             M(MACRO_MOUSE_MOVE_UL)
-#define M_MS_UR             M(MACRO_MOUSE_MOVE_UR)
-#define M_MS_DL             M(MACRO_MOUSE_MOVE_DL)
-#define M_MS_DR             M(MACRO_MOUSE_MOVE_DR)
-*/
 #define TG_NKRO             MAGIC_TOGGLE_NKRO
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
-
-// #define MACRO_BREATH_TOGGLE             21
-// #define MACRO_BREATH_SPEED_INC          23
-// #define MACRO_BREATH_SPEED_DEC          24
-// #define MACRO_BREATH_DEFAULT            25
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -107,25 +85,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {MOUSE,          KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEAD, KC_APP, KC_RCTL,   KC_INS        }
 },
 
-/* Mouse and Number layer
- * ,-----------------------------------------------------------------------------------.
- * |      |  NL  |   7  |   8  |   9  |   =  |M5_Clk|M1_Clk|  ↑   |M2_Clk|MW_Up |      |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |  Alt |   /  |   4  |   5  |   6  |   -  |M4_Clk|  ←   |  ↓   |  →   |MW_Dn | Alt  |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   *  |   1  |   2  |   3  |   +  | Ctrl |M3_Clk|MW_Lft|MW_Rgt|  Up  |Shift |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |CModDH|   ^  |   0  |   .  |Lower |    Enter    |Raise | Ctrl | Left | Down |Right |
- * `-----------------------------------------------------------------------------------'
- */
-
-[_MOUSE] = {
-  {XXXXXXX, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_EQL,  KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______},
-  {KC_LALT, KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LGUI},
-  {_______, KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, KC_LCTL, KC_BTN3, KC_WH_L, KC_WH_R, KC_UP,   _______},
-  {CMODDH,  S(KC_6), KC_P0, KC_PDOT, LOWER,   KC_PENT, KC_PENT, RAISE,   KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT}
-},
-
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |   ¬  |  F1  |  F2  |  F3  |  F4  |   £  |   $  | Prev |  Up  | Next | Vol+ | Del  |
@@ -160,6 +119,61 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {LALT(KC_PSCR),   UK_EURO, KC_4,    KC_5,    KC_6,    KC_LBRC, KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, UK_QUOT        },
   {LSFT_T(KC_BSPC), KC_0,    KC_1,    KC_2,    KC_3,    KC_LPRN, KC_RPRN, KC_EQL,  KC_MINS, UK_HASH, UK_BSLS, RSFT_T(KC_MUTE)},
   {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, _______, _______, _______        }
+},
+
+/* Mouse and Number layer
+ * ,-----------------------------------------------------------------------------------.
+ * |      |  NL  |   7  |   8  |   9  |   =  |M5_Clk|M1_Clk|  ↑   |M2_Clk|MW_Up |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |  Alt |   /  |   4  |   5  |   6  |   -  |M4_Clk|  ←   |  ↓   |  →   |MW_Dn | Alt  |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Shift|   *  |   1  |   2  |   3  |   +  | Ctrl |M3_Clk|MW_Lft|MW_Rgt|  Up  |Shift |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |CModDH|   ^  |   0  |   .  |Lower |    Enter    |Raise | Ctrl | Left | Down |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+
+[_MOUSE] = {
+  {XXXXXXX, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_EQL,  KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______},
+  {KC_LALT, KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LGUI},
+  {_______, KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, KC_LCTL, KC_BTN3, KC_WH_L, KC_WH_R, KC_UP,   _______},
+  {CMODDH,  S(KC_6), KC_P0, KC_PDOT, LOWERM,  KC_PENT, KC_PENT, RAISEM,  KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT}
+},
+
+/* LOWERM
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      | Vol+ | Play |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |     Tab     |      |      | Prev | Vol- | Next |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_LOWERM] = {
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______        },
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______        },
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLU, RSFT_T(KC_MPLY)},
+  {_______, _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, KC_MPRV, KC_VOLD, KC_MNXT        }
+},
+
+/* RAISEM
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |Pg Up | Mute |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |    Space    |      |      | Home |Pg Dn | End  |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_RAISEM] = {
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______        },
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______        },
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PGUP, RSFT_T(KC_MUTE)},
+  {_______, _______, _______, _______, _______, KC_SPC,  KC_SPC,  _______, _______, KC_HOME, KC_PGDN, KC_END         }
 },
 
 /* Adjust (Lower + Raise)
@@ -290,6 +304,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
+      }
+      return false;
+      break;
+    case LOWERM:
+      if (record->event.pressed) {
+        layer_on(_LOWERM);
+        update_tri_layer(_LOWERM, _RAISEM, _ADJUST);
+      } else {
+        layer_off(_LOWERM);
+        update_tri_layer(_LOWERM, _RAISEM, _ADJUST);
+      }
+      return false;
+      break;
+    case RAISEM:
+      if (record->event.pressed) {
+        layer_on(_RAISEM);
+        update_tri_layer(_LOWERM, _RAISEM, _ADJUST);
+      } else {
+        layer_off(_RAISEM);
+        update_tri_layer(_LOWERM, _RAISEM, _ADJUST);
       }
       return false;
       break;
