@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 
 [_MOUSE] = {
-  {XXXXXXX, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_EQL,  KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______},
+  {XXXXXXX, KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_PEQL, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U, _______},
   {KC_LALT, KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, KC_LGUI},
   {_______, KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, KC_LCTL, KC_BTN3, KC_WH_L, KC_WH_R, KC_UP,   _______},
   {CMODDH,  S(KC_6), KC_P0, KC_PDOT, LOWERM,  KC_PENT, KC_PENT, RAISEM,  KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT}
@@ -146,16 +146,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      | Vol+ | Play |
+ * |      |      |      |      |      |      |      |      | Mute | Back | Vol+ | Fwd  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |     Tab     |      |      | Prev | Vol- | Next |
+ * |      |      |      |      |      |     Tab     |      | Play | Prev | Vol- | Next |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWERM] = {
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______        },
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______        },
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_VOLU, RSFT_T(KC_MPLY)},
-  {_______, _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, KC_MPRV, KC_VOLD, KC_MNXT        }
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
+  {_______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_BTN4, KC_VOLU, KC_BTN5},
+  {_______, _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, KC_MPLY, KC_MPRV, KC_VOLD, KC_MNXT}
 },
 
 /* RAISEM
@@ -164,34 +164,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |Pg Up | Mute |
+ * |      |      |      |      |      |      |      |      |      |      |Pg Up |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |    Space    |      |      | Home |Pg Dn | End  |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISEM] = {
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______        },
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______        },
-  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PGUP, RSFT_T(KC_MUTE)},
-  {_______, _______, _______, _______, _______, KC_SPC,  KC_SPC,  _______, _______, KC_HOME, KC_PGDN, KC_END         }
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PGUP, _______},
+  {_______, _______, _______, _______, _______, KC_SPC,  KC_SPC,  _______, _______, KC_HOME, KC_PGDN, KC_END }
 },
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      | Reset|      | BRTOG|BRSPD+|BRSPD-|BRDFLT|BACKLT|      | Sroll| Caps | Del  |
+ * | Power| Reset|      | BRTOG|BRSPD+|BRSPD-|BRDFLT|BACKLT|      | Sroll| Caps | Del  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |Aud on|Audoff|AGnorm|AGswap|Qwerty|CModDH| Mouse|      | Ins  |
+ * | Power|      |      |Aud on|Audoff|AGnorm|AGswap|Qwerty|CModDH| Mouse|      | Ins  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|      |      |      |      |      |
+ * | Sleep|      |      |Mus on|Musoff|Voice-|Voice+|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |             |      |      |      |      | NKRO |
+ * | Wake |      |      |      |      |             |      |      |      |      | NKRO |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = {
- {_______, RESET,   _______, _______, _______, _______, _______, BACKLIT, _______, KC_SLCK, KC_CAPS, KC_DEL },
- {_______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  CMODDH,  MOUSE,   _______, KC_INS },
- {_______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  _______, _______, _______, _______, _______},
- {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, TG_NKRO}
+ {KC_PWR,   RESET,   _______, _______, _______, _______, _______, BACKLIT, _______, KC_SLCK, KC_CAPS, KC_DEL },
+ {KC_POWER, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  CMODDH,  MOUSE,   _______, KC_INS },
+ {KC_SLEP,  _______, _______, MU_ON,   MU_OFF,  MUV_DE,  MUV_IN,  _______, _______, _______, _______, _______},
+ {KC_WAKE,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, TG_NKRO}
 }
 
 
@@ -338,71 +338,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-
-//#ifdef MOUSEKEY_ENABLE
-/*
-        case MACRO_MOUSE:
-            if (record->event.pressed)
-            {
-                layer_invert(LAYER_MOUSE);
-            }
-            break;
-*
-        case MACRO_MOUSE_MOVE_UL:
-            if (record->event.pressed)
-            {
-              mousekey_on(KC_MS_UP);
-              mousekey_on(KC_MS_LEFT);
-            }
-            else
-            {
-              mousekey_off(KC_MS_UP);
-              mousekey_off(KC_MS_LEFT);
-            }
-            break;
-
-        case MACRO_MOUSE_MOVE_UR:
-            if (record->event.pressed)
-            {
-              mousekey_on(KC_MS_UP);
-              mousekey_on(KC_MS_RIGHT);
-            }
-            else
-            {
-              mousekey_off(KC_MS_UP);
-              mousekey_off(KC_MS_RIGHT);
-            }
-            break;
-
-        case MACRO_MOUSE_MOVE_DL:
-            if (record->event.pressed)
-            {
-              mousekey_on(KC_MS_DOWN);
-              mousekey_on(KC_MS_LEFT);
-            }
-            else
-            {
-              mousekey_off(KC_MS_DOWN);
-              mousekey_off(KC_MS_LEFT);
-            }
-            break;
-
-        case MACRO_MOUSE_MOVE_DR:
-            if (record->event.pressed)
-            {
-              mousekey_on(KC_MS_DOWN);
-              mousekey_on(KC_MS_RIGHT);
-            }
-            else
-            {
-              mousekey_off(KC_MS_DOWN);
-              mousekey_off(KC_MS_RIGHT);
-            }
-            break;
-*/
-//#endif /* MOUSEKEY_ENABLE */
-}
-return true;
+    }
+  return true;
 }
 
 void matrix_init_user(void) {
