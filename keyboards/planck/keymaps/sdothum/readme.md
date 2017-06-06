@@ -2,7 +2,8 @@
 
 - Colemak-DH layout layer with shift/tab key overlays
 - Number and symbol/function key layer
-- Hexadecimal keypad layer
+- Numpad layer
+- Mouse and media controls layer
 - Navigation keypad layer
 - Dynamic macro layer
 - Autocompletion tap key pairs (),[],{}

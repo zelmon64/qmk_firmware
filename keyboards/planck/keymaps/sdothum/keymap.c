@@ -69,18 +69,18 @@ enum planck_layers {
 #ifdef COLEMAK
   _COLEMAK = 0
  ,_QWERTY
- ,_MOUSE
+// ,_MOUSE
 #else
   _QWERTY = 0
  ,_COLEMAK
- ,_MOUSE
+// ,_MOUSE
 #endif
  //,_PLOVER
  ,_LCOLEMAK
  ,_RCOLEMAK
  ,_LQWERTY
  ,_RQWERTY
- ,_LMOUSE
+// ,_LMOUSE
 // ,_RMOUSE
  ,_NUMBER
  ,_SYMBOL
@@ -101,7 +101,8 @@ static uint8_t _RSHIFT = _RQWERTY;
 enum planck_keycodes {
   COLEMAK = SAFE_RANGE
  ,QWERTY
- ,MOUSE
+ ,BACKLIT
+ //,MOUSE
  //,PLOVER
  //,PLOVEX
  ,PS_LEFT   // pseudo LT(_SFTNAV, S(KC_LEFT)) for modified key-codes, see process_record_user()
@@ -183,7 +184,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // `-----------------------------------------------------------------------------------'
 
   [_COLEMAK] = {
-    {KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    TD_CAPS, MOUSE,    KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN},
+    {KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    TD_CAPS, OS_CSFT,  KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN},
     {KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    OS_CALT, OS_CGUI,  KC_K,    KC_N,    KC_E,    KC_I,   KC_O   },
     {KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    LT_TAB,  LT_BSPC,  KC_M,    KC_H,    KC_COMM, KC_DOT, KC_QUOT},
     {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  TD_SPC,  LT_BSPC, LT_BSPC,  TD_ENT,  LT_LEFT, AT_DOWN, GT_UP,  CT_RGHT},
@@ -218,14 +219,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |CModDH|   ^  |   0  |   .  |Lower |    Enter    |Raise | Ctrl | Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
- */
+ *
 
 [_MOUSE] = {
   {KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_PEQL, ___x___, COLEMAK, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U},
   {KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_LALT, KC_LGUI, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D},
   {KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, ___x___, LT_BSPC, KC_LCTL, KC_BTN3, KC_UP,   KC_WH_L, KC_WH_R},
   {COLEMAK, S(KC_6), KC_P0, KC_PDOT, TD_SPC,  KC_PENT, KC_PENT, TD_ENT, KC_LEFT, KC_DOWN,  KC_RGHT, KC_RCTL}
-},
+},*/
 
 // ...................................................................... Plover
 //
@@ -332,13 +333,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------+------+------+------+------+------+------|
    * |      |      |      |      |      |    Space    |      |      | Prev | Vol- | Next |
    * `-----------------------------------------------------------------------------------'
-   */
+   *
   [_LMOUSE] = {
     {KC_EJCT, _______, _______, _______, _______, MOUSE,   COLEMAK, _______, _______, KC_PGUP, _______, KC_MSTP},
     {_______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_END,  _______},
     {_______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLU, KC_MPLY, _______},
     {_______, _______, _______, _______, ___x___, KC_SPC,  KC_SPC,  ___x___, KC_MPRV, KC_VOLD, KC_MNXT, _______}
-  },
+  },*/
 
   /* RAISEM Wide
    * ,-----------------------------------------------------------------------------------.
@@ -364,7 +365,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // .-----------------------------------------------------------------------------------.
   // |   {  |   £  |   €  | ^Alt |   }  |      |      |   C  |   7  |   8  |   9  |   /  |
-  // |-----------------------------------------------------------------------------------|0<><>
+  // |-----------------------------------------------------------------------------------|
   // |   (  | Ctrl |  GUI |  Alt |   )  |      |      |   B  |   4  |   5  |   6  |   *  |
   // |-----------------------------------------------------------------------------------|
   // |   [  |   <  |   >  | ↑Alt |   ]  |      |      |   A  |   1  |   2  |   3  |   -  |
@@ -373,10 +374,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // '-----------------------------------------------------------------------------------'
 
   [_NUMBER] = {
-    {TD_LCBR, UK_PND,  UK_EURO, OS_CALT, KC_RCBR, _______, _______, S(KC_C), KC_7,    KC_8,    KC_9,    KC_SLSH},
-    {TD_LPRN, OS_CTL,  OS_GUI,  OS_ALT,  KC_RPRN, _______, _______, S(KC_B), KC_4,    KC_5,    KC_6,    KC_ASTR},
-    {TD_LBRC, TD_LT,   KC_GT,   OS_SALT, KC_RBRC, ___x___, ___x___, S(KC_A), KC_1,    KC_2,    KC_3,    KC_MINS},
-    {___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, KC_EQL,  KC_0,    KC_DOT,  KC_COLN, KC_PLUS},
+    {TD_LCBR, UK_PND,  UK_EURO, OS_CALT, KC_RCBR, _______, KC_SLCK, KC_NLCK, KC_KP_7,    KC_KP_8,  KC_KP_9,    KC_PSLS},
+    {TD_LPRN, OS_CTL,  OS_GUI,  OS_ALT,  KC_RPRN, _______, _______, KC_PSCR, KC_KP_4,    KC_KP_5,  KC_KP_6,    KC_PAST},
+    {TD_LBRC, TD_LT,   KC_GT,   OS_SALT, KC_RBRC, ___x___, ___x___, KC_CIRC, KC_KP_1,    KC_KP_2,  KC_KP_3,    KC_PMNS},
+    {___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, KC_PEQL, KC_KP_0,    KC_PDOT,  KC_COLN, KC_PPLS},
   },
 
 // ................................................................ Symbol Layer
@@ -384,9 +385,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // http://www.keyboard-layout-editor.com/#/gists/b14e93e60f484a7e7c0d89351ea5c663
 
   // .-----------------------------------------------------------------------------------.
-  // |   {  |   .  |   *  |   &  |   }  |      |      |      | Home |  Up  |  End |      |
+  // |   {  |   .  |   *  |   &  |   }  |      |      | PgUp | Home |  Up  |  End |      |
   // |-----------------------------------------------------------------------------------|
-  // |   (  |   ^  |   %  |   $  |   )  |      |      |      | Left | Down | Right|Reghex|
+  // |   (  |   ^  |   %  |   $  |   )  |      |      | PgDn | Left | Down | Right|Reghex|
   // |-----------------------------------------------------------------------------------|
   // |   [  |   #  |   @  |   !  |   ]  |      |      |      | PgDn | PgUp |      |      |
   // |-----------------------------------------------------------------------------------|
@@ -394,8 +395,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // '-----------------------------------------------------------------------------------'
 
   [_SYMBOL] = {
-    {TD_LCBR, KC_DOT,  KC_ASTR, KC_AMPR, KC_RCBR, _______, _______, _______, KC_HOME, KC_UP,   KC_END,  _______},
-    {TD_LPRN, KC_CIRC, KC_PERC, KC_DLR,  KC_RPRN, _______, _______, _______, KC_LEFT, KC_DOWN, KC_RGHT, MO_RHEX},
+    {TD_LCBR, KC_DOT,  KC_ASTR, KC_AMPR, KC_RCBR, _______, _______, KC_PGUP, KC_HOME, KC_UP,   KC_END,  _______},
+    {TD_LPRN, KC_CIRC, KC_PERC, KC_DLR,  KC_RPRN, _______, _______, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, MO_RHEX},
     {TD_LBRC, KC_GRV,  UK_NOT,  UK_PND,  KC_RBRC, ___x___, ___x___, _______, KC_PGDN, KC_PGUP, _______, _______},
     {___x___, ___x___, ___x___, UK_BSLS, PS_PIPE, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___},
   },
@@ -405,20 +406,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // http://www.keyboard-layout-editor.com/#/gists/a5af1dc7defc033feac465339f0cd6bc
 
   // .-----------------------------------------------------------------------------------.
-  // |      |   ?  |   +  |   ~  |      |      |      |   F  |   &  |   *  |   ~  |      |
+  // |      |   ?  |   +  |   ~  |      |      | Stop |M5_Clk|M1_Clk|   ↑  |M2_Clk|      |
   // |-----------------------------------------------------------------------------------|
-  // |  f() |   3  |   2  |   1  |      |      |      |   E  |   $  |   %  |   ^  |  f() |
+  // |  f() |   3  |   2  |   1  |      |      | Play |M4_Clk|   ←  |   ↓  |   →  |  f() |
   // |-----------------------------------------------------------------------------------|
-  // |      |   <  |   >  |   =  |      |      |      |   D  |   !  |   @  |   #  |      |
+  // |      |   <  |   >  |   =  |      |      |      | Mute |M3_Clk| MW_Up| MW_Dn|      |
   // |-----------------------------------------------------------------------------------|
-  // |      |      |      |   :  |      |      |      |      | Space|   ,  |   \  |   |  |
+  // |      |      |      |   :  |      |      |      |      | Prev | Vol- | Vol+ | Next |
   // '-----------------------------------------------------------------------------------'
 
   [_REGHEX] = {
-    {___x___, KC_QUES, KC_PLUS, UK_TILD, ___x___, _______, _______, S(KC_F), KC_AMPR, KC_ASTR, UK_TILD, ___x___},
-    {___x___, KC_3,    KC_2,    KC_1,    ___x___, _______, _______, S(KC_E), KC_DLR,  KC_PERC, KC_CIRC, ___x___},
-    {___x___, TD_LT,   KC_GT,   KC_EQL,  ___x___, ___x___, ___x___, S(KC_D), KC_EXLM, UK_AT,   UK_HASH, ___x___},
-    {___x___, ___x___, ___x___, KC_COLN, ___x___, ___x___, ___x___, ___x___, KC_SPC,  KC_COMM, UK_BSLS, UK_PIPE},
+    {___x___, KC_QUES, KC_PLUS, UK_TILD, ___x___, _______, KC_MSTP, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, ___x___},
+    {___x___, KC_3,    KC_2,    KC_1,    ___x___, _______, KC_MPLY, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, ___x___},
+    {___x___, TD_LT,   KC_GT,   KC_EQL,  ___x___, ___x___, ___x___, KC_MUTE, KC_BTN3, KC_WH_D, KC_WH_U, ___x___},
+    {___x___, ___x___, ___x___, KC_COLN, ___x___, ___x___, ___x___, ___x___, KC_MPRV,  KC_VOLD, KC_VOLU, KC_MNXT},
   },
 
 // ...................................................... Shift Navigation Layer
@@ -452,16 +453,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |-----------------------------------------------------------------------------------|
   // | Ctrl |  GUI |  Alt | Shift| Send |      |      |      |  F4  |  F5  |  F6  |  F11 |
   // |-----------------------------------------------------------------------------------|
-  // |      |      |      |      |      |      |      |      |  F1  |  F2  |  F3  |  F10 |
+  // |      |      |      |      |      |  f() |  App |   +  |  F1  |  F2  |  F3  |  F10 |
   // |-----------------------------------------------------------------------------------|
-  // |      |      |      |      |      |  f() |      |   +  |      |      |      |      |
+  // |      |      |      |      |      |  f() |  f() |  f() |      |      |      |      |
   // '-----------------------------------------------------------------------------------'
 
   [_FNCKEY] = {
     {_______, _______, _______, _______, _______, _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F12 },
     {OS_SFT,  OS_CTL,  OS_GUI,  OS_ALT,  TD_SEND, _______, _______, _______, KC_F4,   KC_F5,   KC_F6,   KC_F11 },
-    {_______, _______, _______, _______, _______, ___x___, _______, _______, KC_F1,   KC_F2,   KC_F3,   KC_F10 },
-    {_______, _______, _______, _______, _______, ___x___, _______, KC_PLUS, _______, _______, _______, _______},
+    {_______, _______, _______, _______, _______, ___x___, KC_APP,  KC_PLUS, KC_F1,   KC_F2,   KC_F3,   KC_F10 },
+    {_______, _______, _______, _______, _______, ___x___, ___x___, ___x___, _______, _______, _______, _______},
   },
 
 // ................................................................ Adjust Layer
@@ -469,20 +470,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // http://www.keyboard-layout-editor.com/#/gists/ac56b98d8737118f2beef3d6855d760e
 
   // ,-----------------------------------------------------------------------------------.
-  // |      |      |      |      |      |      |      |      |      |      |      | Reset|
+  // | Power| Power|      | Sleep| Wake |      |      | BkLit|      |      |      | Reset|
   // |------+------+------+------+------+-------------+------+------+------+------+------|
-  // |AGnorm|Voice-|Audoff|Musoff|MIDIof|      |      |Qwerty|Colemk|      |      |      |
+  // |AGnorm|Voice-|Audoff|Musoff|      |      |      |Qwerty|Colemk|      |      |      |
   // |------+------+------+------+------+------|------+------+------+------+------+------|
-  // |AGswap|Voice+|Aud on|Mus on|MIDIon|      |      |      |      |   <  |   >  |      |
+  // |AGswap|Voice+|Aud on|Mus on|   =  | Menu |  f() |      |      |   <  |   >  |      |
   // |------+------+------+------+------+------+------+------+------+------+------+------|
-  // |      |      |      |      |      |      |  f() |      |      |      |      |Plover|
+  // |      |      |      |      |      |  f() |  f() |      |      |      |      |Plover|
   // `-----------------------------------------------------------------------------------'
 
   [_ADJUST] = {
-    {KC_PWR, KC_POWER, _______, KC_SLEP, KC_WAKE, _______, _______, _______, _______, _______, _______, RESET  },
-    {AG_NORM, MUV_DE,  AU_OFF,  MU_OFF,  MI_OFF,  _______, _______, QWERTY,  COLEMAK, MOUSE,   _______, _______},
-    {AG_SWAP, MUV_IN,  AU_ON,   MU_ON,   MI_ON,   _______, ___x___, _______, _______, TD_LT,   KC_GT,   _______},
-    {_______, _______, _______, _______, _______, _______, ___x___, _______, _______, _______, _______, _______},
+    {KC_PWR, KC_POWER, _______, KC_SLEP, KC_WAKE, _______, _______, BACKLIT, _______, _______, _______, RESET  },
+    {AG_NORM, MUV_DE,  AU_OFF,  MU_OFF,  _______, _______, _______, QWERTY,  COLEMAK, _______, _______, _______},
+    {AG_SWAP, MUV_IN,  AU_ON,   MU_ON,   KC_EQL,  KC_MENU, ___x___, _______, _______, TD_LT,   KC_GT,   _______},
+    {_______, _______, _______, _______, _______, ___x___, ___x___, _______, _______, _______, _______, _______},
   },
 };
 
@@ -491,16 +492,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            ,Q__NOTE(_GS7)
 #define CAPSLOCK_OFF_SOUND  E__NOTE(_GS7) \
                            ,Q__NOTE(_E7)
-float tone_startup  [][2] = SONG   (STARTUP_SOUND);
+float tone_startup  [][2] = SONG   (ZELDA_PUZZLE);
 float tone_colemak  [][2] = SONG   (COLEMAK_SOUND);
 float tone_qwerty   [][2] = SONG   (QWERTY_SOUND);
-float tone_mouse    [][2] = SONG   (ZELDA_PUZZLE);
+//float tone_mouse    [][2] = SONG   (ZELDA_PUZZLE);
 //float tone_plover   [][2] = SONG   (PLOVER_SOUND);
 //float tone_plover_gb[][2] = SONG   (PLOVER_GOODBYE_SOUND);
 float tone_caps_on  [][2] = SONG   (CAPSLOCK_ON_SOUND);
 float tone_caps_off [][2] = SONG   (CAPSLOCK_OFF_SOUND);
-float tone_numlk_on[][2]   = SONG(NUM_LOCK_ON_SOUND);
-float tone_numlk_off[][2]  = SONG(NUM_LOCK_OFF_SOUND);
+float tone_numlk_on [][2] = SONG   (NUM_LOCK_ON_SOUND);
+float tone_numlk_off[][2] = SONG   (NUM_LOCK_OFF_SOUND);
+float tone_scroll_on[][2] = SONG   (SCROLL_LOCK_ON_SOUND);
+float tone_scroll_off[][2]= SONG   (SCROLL_LOCK_OFF_SOUND);
 float music_scale   [][2] = SONG   (MUSIC_SCALE_SOUND);
 float tone_goodbye  [][2] = SONG   (GOODBYE_SOUND);
 #endif
@@ -839,7 +842,7 @@ void qwerty(keyrecord_t *record)
     _RSHIFT = _RQWERTY;
   }
 }
-
+/*
 void mouse(keyrecord_t *record)
 {
   if (record->event.pressed) {
@@ -852,7 +855,7 @@ void mouse(keyrecord_t *record)
     _RSHIFT = _LMOUSE;
   }
 }
-/*
+*
 void toggle_plover(void)
 {
   // toggle window manager plover application, see herbstluftwm/config/appbinds
@@ -950,9 +953,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     case QWERTY:
       qwerty(record);
       return false;
+      case BACKLIT:
+      if (record->event.pressed) {
+        //register_code(KC_RSFT);
+        #ifdef BACKLIGHT_ENABLE
+          backlight_step();
+        #endif
+      } else {
+        //unregister_code(KC_RSFT);
+      }
+      return false;
+      break;/*
     case MOUSE:
       mouse(record);
-      return false;/*
+      return false;*
     case PLOVER:
       plover(record);
       return false;
@@ -986,7 +1000,7 @@ void led_set_user(uint8_t usb_led)
     else if (!(usb_led & (1<<USB_LED_CAPS_LOCK)) && (old_usb_led & (1<<USB_LED_CAPS_LOCK))) {
       // if capslock LED is turning off
       PLAY_NOTE_ARRAY(tone_caps_off, false, LEGATO);
-    }/*
+    }
     else if ((usb_led & (1<<USB_LED_NUM_LOCK)) && !(old_usb_led & (1<<USB_LED_NUM_LOCK)))
     {
             // If NUM LK LED is turning on...
@@ -996,7 +1010,17 @@ void led_set_user(uint8_t usb_led)
     {
             // If NUM LED is turning off...
             PLAY_NOTE_ARRAY(tone_numlk_off, false, LEGATO);
-    }*/
+    }
+    else if ((usb_led & (1<<USB_LED_SCROLL_LOCK)) && !(old_usb_led & (1<<USB_LED_SCROLL_LOCK)))
+    {
+            // If SCROLL LK LED is turning on...
+            PLAY_NOTE_ARRAY(tone_scroll_on,  false, LEGATO);
+    }
+    else if (!(usb_led & (1<<USB_LED_SCROLL_LOCK)) && (old_usb_led & (1<<USB_LED_SCROLL_LOCK)))
+    {
+            // If SCROLL LED is turning off...
+            PLAY_NOTE_ARRAY(tone_scroll_off, false, LEGATO);
+    }
   }
   old_usb_led = usb_led;
 }
