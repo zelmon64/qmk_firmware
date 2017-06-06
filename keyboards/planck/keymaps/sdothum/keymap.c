@@ -416,9 +416,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // '-----------------------------------------------------------------------------------'
 
   [_REGHEX] = {
-    {___x___, KC_QUES, KC_PLUS, UK_TILD, ___x___, _______, KC_MSTP, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, ___x___},
-    {___x___, KC_3,    KC_2,    KC_1,    ___x___, _______, KC_MPLY, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, ___x___},
-    {___x___, TD_LT,   KC_GT,   KC_EQL,  ___x___, ___x___, ___x___, KC_MUTE, KC_BTN3, KC_WH_D, KC_WH_U, ___x___},
+    {___x___, KC_QUES, KC_PLUS, UK_TILD, KC_WHOM, KC_MSEL, KC_MSTP, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, ___x___},
+    {___x___, KC_WBAK, KC_WREF, KC_WFWD, KC_WSTP, KC_EJCT, KC_MPLY, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, ___x___},
+    {___x___, TD_LT,   KC_GT,   KC_EQL,  KC_WSCH, ___x___, ___x___, KC_MUTE, KC_BTN3, KC_WH_D, KC_WH_U, ___x___},
     {___x___, ___x___, ___x___, KC_COLN, ___x___, ___x___, ___x___, ___x___, KC_MPRV,  KC_VOLD, KC_VOLU, KC_MNXT},
   },
 
@@ -459,9 +459,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // '-----------------------------------------------------------------------------------'
 
   [_FNCKEY] = {
-    {_______, _______, _______, _______, _______, _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F12 },
+    {_______, _______, _______, _______, _______, KC_CALC, KC_MYCM, _______, KC_F7,   KC_F8,   KC_F9,   KC_F12 },
     {OS_SFT,  OS_CTL,  OS_GUI,  OS_ALT,  TD_SEND, _______, _______, _______, KC_F4,   KC_F5,   KC_F6,   KC_F11 },
-    {_______, _______, _______, _______, _______, ___x___, KC_APP,  KC_PLUS, KC_F1,   KC_F2,   KC_F3,   KC_F10 },
+    {_______, _______, _______, _______, KC_EQL,  ___x___, KC_APP,  KC_PLUS, KC_F1,   KC_F2,   KC_F3,   KC_F10 },
     {_______, _______, _______, _______, _______, ___x___, ___x___, ___x___, _______, _______, _______, _______},
   },
 
