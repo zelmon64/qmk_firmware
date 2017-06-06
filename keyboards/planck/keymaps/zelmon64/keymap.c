@@ -27,6 +27,13 @@ enum planck_layers {
   _MOUSE,
   _LOWERM,
   _RAISEM,
+  _QWERTYW,
+  _CMODDHW,
+  _LOWERW,
+  _RAISEW,
+  _MOUSEW,
+  _LOWERMW,
+  _RAISEMW,
   _ADJUST
 };
 
@@ -38,6 +45,13 @@ enum planck_keycodes {
   MOUSE,
   LOWERM,
   RAISEM,
+  QWERTYW,
+  CMODDHW,
+  LOWERW,
+  RAISEW,
+  MOUSEW,
+  LOWERMW,
+  RAISEMW,
   BACKLIT,
 };
 
@@ -176,6 +190,133 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {_______, _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, KC_HOME, KC_PGDN, KC_END }
 },
 
+/* Qwerty Wide
+ * ,-----------------------------------------------------------------------------------.
+ * |   Q  |   W  |   E  |   R  |   T  | Tab  | Bksp |   Y  |   U  |   I  |   O  |   P  |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |   A  |   S  |   D  |   F  |   G  | Esc  |  '   |   H  |   J  |   K  |   L  |   ;  |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |   Z  |   X  |   C  |   V  |   B  | Shift|Enter |   N  |   M  |   ,  |   .  |   /  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left |  Up  | Down |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_QWERTYW] = {
+  {KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_TAB,    KC_BSPC,         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P       },
+  {KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_ESC, KC_QUOT,         KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN       },
+  {KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    LSFT_T(KC_DEL), RSFT_T(KC_ENT), KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH},
+  {_______,        KC_LCTL, KC_LALT, KC_LGUI, LOWERW,   KC_SPC,  KC_SPC,  RAISEW,   KC_LEFT, KC_UP,   KC_DOWN, KC_RGHT       }
+},
+
+/* Colemak Mod-DH Wide
+ * ,-----------------------------------------------------------------------------------.
+ * |   Q  |   W  |   F  |   P  |   B  | Tab  | Bksp |   J  |   L  |   U  |   Y  |   ;  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |   A  |   R  |   S  |   T  |   G  | Esc  |  '   |   K  |   N  |   E  |   I  |   O  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |   Z  |   X  |   C  |   D  |   V  | Shift|Enter |   M  |   H  |   ,  |   .  |   /  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Mouse| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | lead | Menu | Ctrl | Ins  |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_CMODDHW] = {
+  {KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    KC_TAB,   KC_BSPC,         KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN       },
+  {KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    KC_ESC,      KC_QUOT,         KC_K,    KC_N,    KC_E,    KC_I,   KC_O       },
+  {KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    LSFT_T(KC_DEL),   RSFT_T(KC_ENT), KC_M,    KC_H,    KC_COMM, KC_DOT, KC_SLSH},
+  {MOUSE,          KC_LCTL, KC_LALT, KC_LGUI, LOWERW,   KC_SPC,  KC_SPC,  RAISEW,   KC_LEAD, KC_APP, KC_RCTL,   KC_INS        }
+},
+
+/* Lower Wide
+ * ,-----------------------------------------------------------------------------------.
+ * |   ¦  |   7  |   8  |   9  |   {  |   `  | Del  |   $  | Prev |  Up  | Next | Vol+ |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |   €  |   4  |   5  |   6  |   [  | Enter|  &   |   %  | Left | Down |Right | Vol- |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |   0  |   1  |   2  |   3  |   (  | Bksp | Play |   *  |   +  |   _  |   ~  |   |  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |     Tab     |      |      |      |      |PrntSc|
+ * `-----------------------------------------------------------------------------------'
+ */
+[_LOWERW] = {
+  {UK_BRKP, KC_7,    KC_8,    KC_9,    KC_LCBR, KC_GRV, KC_DEL,          KC_DLR,  KC_MPRV, KC_UP,   KC_MNXT, KC_VOLU         },
+  {UK_EURO, KC_4,    KC_5,    KC_6,    KC_LBRC, KC_ENT, KC_AMPR,          KC_PERC, KC_LEFT, KC_DOWN, KC_RGHT, KC_VOLD        },
+  {KC_0,    KC_1,    KC_2,    KC_3,    KC_LPRN, LSFT_T(KC_BSPC), RSFT_T(KC_MPLY), KC_ASTR, KC_PLUS, KC_UNDS, UK_TILD, UK_PIPE},
+  {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, _______, _______, LALT(KC_PSCR)  }
+},
+
+/* Raise Wide
+ * ,-----------------------------------------------------------------------------------.
+ * |  F1  |  F2  |  F3  |  F4  |   £  |   ¬  | Del  |   }  | Home |  Up  | End  |Pg Up |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |  F5  |  F6  |  F7  |  F8  |   !  | Enter|  "   |   ]  | Left | Down |Right |Pg Dn |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |  F9  |  F10 |  F11 |  F12 |   ^  | Bksp | Mute |   )  |   =  |   -  |   #  |   \  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |     Tab     |      |      |      |      |PrntSc|
+ * `-----------------------------------------------------------------------------------'
+ */
+[_RAISEW] = {
+  {KC_F1,   KC_F2,   KC_F3,   KC_F4,   UK_PND,  UK_NOT, KC_DEL,          KC_RCBR, KC_HOME, KC_UP,   KC_END,  KC_PGUP         },
+  {KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_EXLM, KC_ENT, UK_QUOT,          KC_RBRC, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN        },
+  {KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_CIRC, LSFT_T(KC_BSPC), RSFT_T(KC_MUTE), KC_RPRN, KC_EQL,  KC_MINS, UK_HASH, UK_BSLS},
+  {_______,         _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, _______, _______, KC_PSCR        }
+},
+
+/* Mouse and Number layer Wide
+ * ,-----------------------------------------------------------------------------------.
+ * |  NL  |   7  |   8  |   9  |   =  |      |      |M5_Clk|M1_Clk|  ↑   |M2_Clk|MW_Up |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |   /  |   4  |   5  |   6  |   -  |  Alt | GLU  |M4_Clk|  ←   |  ↓   |  →   |MW_Dn |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |   *  |   1  |   2  |   3  |   +  | Shift|Shift | Ctrl |M3_Clk|MW_Lft|  Up  |MW_Rgt|
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |CModDH|   ^  |   0  |   .  |Lower |    Enter    |Raise | Ctrl | Left | Down |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+
+[_MOUSEW] = {
+  {KC_NLCK, KC_P7, KC_P8,   KC_P9,   KC_PEQL, XXXXXXX, _______, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_WH_U},
+  {KC_PSLS, KC_P4, KC_P5,   KC_P6,   KC_PMNS, KC_LALT, KC_LGUI, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D},
+  {KC_PAST, KC_P1, KC_P2,   KC_P3,   KC_PPLS, _______,   _______, KC_LCTL, KC_BTN3, KC_WH_L, KC_UP, KC_WH_R},
+  {CMODDH,  S(KC_6), KC_P0, KC_PDOT, LOWERMW,  KC_PENT, KC_PENT, RAISEMW,  KC_RCTL, KC_LEFT, KC_DOWN, KC_RGHT}
+},
+
+/* LOWERM Wide
+ * ,-----------------------------------------------------------------------------------.
+ * | Eject|      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      | Mute | Vol+ | Play |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |    Space    |      |      | Prev | Vol- | Next |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_LOWERMW] = {
+  {KC_EJCT, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MSTP},
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLU, KC_MPLY},
+  {_______, _______, _______, _______, _______, KC_SPC,  KC_SPC,  _______, _______, KC_MPRV, KC_VOLD, KC_MNXT}
+},
+
+/* RAISEM Wide
+ * ,-----------------------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |Pg Up |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |     Tab     |      |      | Home |Pg Dn | End  |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_RAISEMW] = {
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
+  {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PGUP, _______},
+  {_______, _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, KC_HOME, KC_PGDN, KC_END }
+},
+
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
  * | Power| Reset|      | BRTOG|BRSPD+|BRSPD-|BRDFLT|BACKLT|      | Sroll| Caps | Del  |
@@ -190,8 +331,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] = {
  {KC_PWR,   RESET,   _______, _______, _______, _______, _______, BACKLIT, _______, KC_SLCK, KC_CAPS, KC_DEL },
  {KC_POWER, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  CMODDH,  MOUSE,   _______, KC_INS },
- {KC_SLEP,  _______, _______, MU_ON,   MU_OFF,  MUV_DE,  MUV_IN,  _______, KC_MYCM, KC_CALC, _______, _______},
- {KC_WAKE,  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, TG_NKRO}
+ {KC_SLEP,  _______, _______, MU_ON,   MU_OFF,  MUV_DE,  MUV_IN,  QWERTYW, CMODDHW, MOUSEW,  _______, _______},
+ {KC_WAKE,  _______, _______, _______, _______, _______, _______, _______, KC_MYCM, KC_CALC, _______, TG_NKRO}
 }
 
 
@@ -201,20 +342,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 float tone_startup[][2]    = SONG(STARTUP_SOUND);
 float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-float tone_colemakdh[][2]  = SONG(ZELDA_ITEM);
-float tone_mouse[][2]      = SONG(ZELDA_PUZZLE);
+float tone_colemakdh[][2]  = SONG(COLEMAK_SOUND);
+float tone_mouse[][2]      = SONG(DVORAK_SOUND);
+float tone_qwerty_wide[][2]     = SONG(QWERTY_SOUND);
+float tone_colemakdh_wide[][2]  = SONG(ZELDA_ITEM);
+float tone_mouse_wide[][2]      = SONG(ZELDA_PUZZLE);
 float music_scale[][2]     = SONG(MUSIC_SCALE_SOUND);
 
 float tone_goodbye[][2] =    SONG(GOODBYE_SOUND);
 
 float tone_audio_on[][2]   = SONG(CLOSE_ENCOUNTERS_5_NOTE);
 float tone_music_on[][2]   = SONG(DOE_A_DEER);
-float tone_caps_on[][2]    = SONG(CAPS_LOCK_ON_SOUND);
-float tone_caps_off[][2]   = SONG(CAPS_LOCK_OFF_SOUND);
+float tone_caps_on[][2]    = SONG(SCROLL_LOCK_ON_SOUND);
+float tone_caps_off[][2]   = SONG(SCROLL_LOCK_OFF_SOUND);
 float tone_numlk_on[][2]   = SONG(NUM_LOCK_ON_SOUND);
 float tone_numlk_off[][2]  = SONG(NUM_LOCK_OFF_SOUND);
-float tone_scroll_on[][2]  = SONG(SCROLL_LOCK_ON_SOUND);
-float tone_scroll_off[][2] = SONG(SCROLL_LOCK_OFF_SOUND);
+float tone_scroll_on[][2]  = SONG(CAPS_LOCK_ON_SOUND);
+float tone_scroll_off[][2] = SONG(CAPS_LOCK_OFF_SOUND);
 
 #endif /* AUDIO_ENABLE */
 
@@ -327,7 +471,74 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case BACKLIT:
+      case QWERTYW:
+        if (record->event.pressed) {
+          #ifdef AUDIO_ENABLE
+            PLAY_NOTE_ARRAY(tone_qwerty_wide, false, 0);
+          #endif
+          persistent_default_layer_set(1UL<<_QWERTYW);
+        }
+        return false;
+        break;
+      case CMODDHW:
+        if (record->event.pressed) {
+          #ifdef AUDIO_ENABLE
+            PLAY_NOTE_ARRAY(tone_colemakdh_wide, false, 0);
+          #endif
+          persistent_default_layer_set(1UL<<_CMODDHW);
+        }
+        return false;
+        break;
+      case MOUSEW:
+        if (record->event.pressed) {
+          #ifdef AUDIO_ENABLE
+            PLAY_NOTE_ARRAY(tone_mouse_wide, false, 0);
+          #endif
+          persistent_default_layer_set(1UL<<_MOUSEW);
+        }
+        return false;
+        break;
+      case LOWERW:
+        if (record->event.pressed) {
+          layer_on(_LOWERW);
+          update_tri_layer(_LOWERW, _RAISEW, _ADJUST);
+        } else {
+          layer_off(_LOWERW);
+          update_tri_layer(_LOWERW, _RAISEW, _ADJUST);
+        }
+        return false;
+        break;
+      case RAISEW:
+        if (record->event.pressed) {
+          layer_on(_RAISEW);
+          update_tri_layer(_LOWERW, _RAISEW, _ADJUST);
+        } else {
+          layer_off(_RAISEW);
+          update_tri_layer(_LOWERW, _RAISEW, _ADJUST);
+        }
+        return false;
+        break;
+      case LOWERMW:
+        if (record->event.pressed) {
+          layer_on(_LOWERMW);
+          update_tri_layer(_LOWERMW, _RAISEMW, _ADJUST);
+        } else {
+          layer_off(_LOWERMW);
+          update_tri_layer(_LOWERMW, _RAISEMW, _ADJUST);
+        }
+        return false;
+        break;
+      case RAISEMW:
+        if (record->event.pressed) {
+          layer_on(_RAISEMW);
+          update_tri_layer(_LOWERMW, _RAISEMW, _ADJUST);
+        } else {
+          layer_off(_RAISEMW);
+          update_tri_layer(_LOWERMW, _RAISEMW, _ADJUST);
+        }
+        return false;
+        break;
+      case BACKLIT:
       if (record->event.pressed) {
         register_code(KC_RSFT);
         #ifdef BACKLIGHT_ENABLE

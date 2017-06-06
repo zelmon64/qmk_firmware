@@ -8,3 +8,4 @@
 * LShift and RShift double up as Dell and Enter when tapped
 * Optional NKRO
 * System Control on the adjust layer
+* Ergo Wide option
