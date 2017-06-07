@@ -243,7 +243,7 @@ enum usage_pages {
 
 
 
-/* 
+/*
  * Layer Actions
  */
 enum layer_param_on {
@@ -344,5 +344,15 @@ enum swap_hands_pram_tap_op {
 #define ACTION_SWAP_HANDS_OFF_ON()      ACTION(ACT_SWAP_HANDS, OP_SH_OFF_ON)
 #define ACTION_SWAP_HANDS_ON()          ACTION(ACT_SWAP_HANDS, OP_SH_ON)
 #define ACTION_SWAP_HANDS_OFF()         ACTION(ACT_SWAP_HANDS, OP_SH_OFF)
+/* OneHand Support */
+enum rotate_keyboard_pram_tap_op {
+    OP_RK_TOGGLE = 0xF0,
+    OP_RK_OFF,
+    OP_RK_ON,
+};
+
+#define ACTION_ROTATE_KEYBOARD_TOGGLE()  ACTION(ACT_SWAP_HANDS, OP_RK_TOGGLE)
+#define ACTION_ROTATE_KEYBOARD_ON()      ACTION(ACT_SWAP_HANDS, OP_RK_ON)
+#define ACTION_ROTATE_KEYBOARD_OFF()     ACTION(ACT_SWAP_HANDS, OP_RK_OFF)
 
 #endif /* ACTION_CODE_H */

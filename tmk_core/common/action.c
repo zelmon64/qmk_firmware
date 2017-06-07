@@ -57,6 +57,12 @@ void action_exec(keyevent_t event)
     fauxclicky_check();
 #endif
 
+#ifdef ROTATE_ENABLE
+    if (!IS_NOEVENT(event)) {
+        process_rotate_keyboard(&event);
+    }
+#endif
+
 #ifdef ONEHAND_ENABLE
     if (!IS_NOEVENT(event)) {
         process_hand_swap(&event);
@@ -98,6 +104,26 @@ void process_hand_swap(keyevent_t *event) {
         swap_state[pos.row] |= col_bit;
     } else {
         swap_state[pos.row] &= ~(col_bit);
+    }
+}
+#endif
+
+#ifdef ROTATE_ENABLE
+bool rotate_keyboard = true;
+
+void process_rotate_keyboard(keyevent_t *event) {
+    static rotate_state_row_t rotate_state[MATRIX_ROWS];
+
+    keypos_t pos = event->key;
+    rotate_state_row_t col_bit = (rotate_state_row_t)1<<pos.col;
+    bool do_swap = event->pressed ? rotate_keyboard :
+                                    rotate_state[pos.row] & (col_bit);
+
+    if (do_swap) {
+        event->key = rotate_keyboard_config[pos.row][pos.col];
+        rotate_state[pos.row] |= col_bit;
+    } else {
+        rotate_state[pos.row] &= ~(col_bit);
     }
 }
 #endif
