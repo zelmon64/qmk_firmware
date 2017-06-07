@@ -159,6 +159,8 @@ enum planck_keycodes {
  ,OS_SGUI = OSM(MOD_LGUI | MOD_LSFT)
 };
 
+#define TG_NKRO      MAGIC_TOGGLE_NKRO
+
 // modifier keys
 #define AT_DOWN ALT_T(KC_UP)
 #define CT_RGHT CTL_T(KC_RGHT)
@@ -221,7 +223,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_COLEMAK] = {
     {KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    TD_CAPS, TD_CAPS,  KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN},
-    {KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    OS_CALT, OS_CGUI,  KC_K,    KC_N,    KC_E,    KC_I,   KC_O   },
+    {KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    OS_CALT, BACKLIT,  KC_K,    KC_N,    KC_E,    KC_I,   KC_O   },
     {KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    LT_TAB,  LT_BSPC,  KC_M,    KC_H,    KC_COMM, KC_DOT, KC_QUOT},
     {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  TD_SPC,  LT_TAB,  LT_BSPC,  TD_ENT,  LT_LEFT, AT_DOWN, GT_UP,  CT_RGHT},
   },
@@ -516,7 +518,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // `-----------------------------------------------------------------------------------'
 
   [_ADJUST] = {
-    {KC_PWR, KC_POWER, _______, KC_SLEP, KC_WAKE, _______, _______, BACKLIT, _______, _______, _______, RESET  },
+    {KC_PWR, KC_POWER, _______, KC_SLEP, KC_WAKE, _______, _______, BACKLIT, _______, TG_NKRO, _______, RESET  },
     {AG_NORM, MUV_DE,  AU_OFF,  MU_OFF,  _______, _______, _______, _______, COLEMAK, _______, _______, _______},
     {AG_SWAP, MUV_IN,  AU_ON,   MU_ON,   KC_EQL,  KC_MENU, ___x___, _______, _______, TD_LT,   KC_GT,   _______},
     {KC_FN3,   KC_FN1,  KC_FN4,  _______, KC_EQL,  ___x___, ___x___, _______, _______, _______, _______, _______},
@@ -996,18 +998,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       return false;/*
     case QWERTY:
       qwerty(record);
-      return false;
-      case BACKLIT:
-      if (record->event.pressed) {
-        //register_code(KC_RSFT);
-        #ifdef BACKLIGHT_ENABLE
-          backlight_step();
-        #endif
-      } else {
-        //unregister_code(KC_RSFT);
-      }
-      return false;
-      break;*
+      return false;*
     case MOUSE:
       mouse(record);
       return false;*
@@ -1017,6 +1008,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     case PLOVEX:
       plovex(record);
       return false;*/
+    case BACKLIT:
+      if (record->event.pressed) {
+        //register_code(KC_RSFT);
+        #ifdef BACKLIGHT_ENABLE
+          backlight_step();
+        #endif
+      } else {
+        //unregister_code(KC_RSFT);
+      }
+      return false;
+      break;
   }
   return true;
 }

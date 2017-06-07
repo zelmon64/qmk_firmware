@@ -83,7 +83,7 @@ void action_exec(keyevent_t event)
 }
 
 #ifdef ONEHAND_ENABLE
-bool swap_hands = false;
+bool swap_hands = true;
 
 void process_hand_swap(keyevent_t *event) {
     static swap_state_row_t swap_state[MATRIX_ROWS];
