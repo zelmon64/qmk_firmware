@@ -62,24 +62,60 @@
 #include "audio.h"
 #endif
 #include "eeconfig.h"
+/*
+#ifdef ROTATE_ENABLE
+__attribute__ ((weak))
+const keypos_t rotate_keyboard_config[MATRIX_ROWS][MATRIX_COLS] = {
+  {{11, 3}, {10, 3}, {9, 3}, {8, 3}, {7, 3}, {6, 3}, {5, 3}, {4, 3}, {3, 3}, {2, 3}, {1, 3}, {0, 3}},
+  {{11, 2}, {10, 2}, {9, 2}, {8, 2}, {7, 2}, {6, 2}, {5, 2}, {4, 2}, {3, 2}, {2, 2}, {1, 2}, {0, 2}},
+  {{11, 1}, {10, 1}, {9, 1}, {8, 1}, {7, 1}, {6, 1}, {5, 1}, {4, 1}, {3, 1}, {2, 1}, {1, 1}, {0, 1}},
+  {{11, 0}, {10, 0}, {9, 0}, {8, 0}, {7, 0}, {6, 0}, {5, 0}, {4, 0}, {3, 0}, {2, 0}, {1, 0}, {0, 0}},
+};
+#endif
 
+#ifdef ROTATE_ENABLE
+bool rotate_keyboard = false;
+
+void process_rotate_keyboard(keyevent_t *event) {
+    static rotate_state_row_t rotate_state[MATRIX_ROWS];
+
+    keypos_t pos = event->key;
+    rotate_state_row_t col_bit = (rotate_state_row_t)1<<pos.col;
+    bool do_rotate = event->pressed ? rotate_keyboard :
+                                    rotate_state[pos.row] & (col_bit);
+
+    if (do_rotate) {
+        event->key = rotate_keyboard_config[pos.row][pos.col];
+        rotate_state[pos.row] |= col_bit;
+    } else {
+        rotate_state[pos.row] &= ~(col_bit);
+    }
+}
+#endif
+
+#ifdef ROTATE_ENABLE
+    if (!IS_NOEVENT(event)) {
+        process_rotate_keyboard(&event);
+    }
+#endif
+*/
 extern keymap_config_t keymap_config;
 
 enum planck_layers {
 #ifdef COLEMAK
   _COLEMAK = 0
- ,_QWERTY
+// ,_QWERTY
 // ,_MOUSE
 #else
-  _QWERTY = 0
+//  _QWERTY = 0
  ,_COLEMAK
 // ,_MOUSE
 #endif
  //,_PLOVER
  ,_LCOLEMAK
  ,_RCOLEMAK
- ,_LQWERTY
- ,_RQWERTY
+// ,_LQWERTY
+// ,_RQWERTY
 // ,_LMOUSE
 // ,_RMOUSE
  ,_NUMBER
@@ -94,13 +130,13 @@ enum planck_layers {
 static uint8_t _LSHIFT = _LCOLEMAK;
 static uint8_t _RSHIFT = _RCOLEMAK;
 #else
-static uint8_t _LSHIFT = _LQWERTY;
-static uint8_t _RSHIFT = _RQWERTY;
+//static uint8_t _LSHIFT = _LQWERTY;
+//static uint8_t _RSHIFT = _RQWERTY;
 #endif
 
 enum planck_keycodes {
   COLEMAK = SAFE_RANGE
- ,QWERTY
+ //,QWERTY
  ,BACKLIT
  //,MOUSE
  //,PLOVER
@@ -174,7 +210,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // https://colemakmods.github.io/mod-dh/
 
   // ,-----------------------------------------------------------------------------------.
-  // |   Q  |   W  |   F  |   P  |   B  | Caps |^Shift|   J  |   L  |   U  |   Y  |   ;  |
+  // |   Q  |   W  |   F  |   P  |   B  | Caps | Caps |   J  |   L  |   U  |   Y  |   ;  |
   // |------+------+------+------+------+-------------+------+------+------+------+------|
   // |   A  |   R  |   S  |   T  |   G  | ^Alt | ^GUI |   K  |   N  |   E  |   I  |   O  |
   // |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -184,10 +220,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // `-----------------------------------------------------------------------------------'
 
   [_COLEMAK] = {
-    {KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    TD_CAPS, OS_CSFT,  KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN},
+    {KC_Q,    KC_W,    KC_F,    KC_P,    KC_B,    TD_CAPS, TD_CAPS,  KC_J,    KC_L,    KC_U,    KC_Y,   KC_SCLN},
     {KC_A,    KC_R,    KC_S,    KC_T,    KC_G,    OS_CALT, OS_CGUI,  KC_K,    KC_N,    KC_E,    KC_I,   KC_O   },
     {KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    LT_TAB,  LT_BSPC,  KC_M,    KC_H,    KC_COMM, KC_DOT, KC_QUOT},
-    {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  TD_SPC,  LT_BSPC, LT_BSPC,  TD_ENT,  LT_LEFT, AT_DOWN, GT_UP,  CT_RGHT},
+    {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  TD_SPC,  LT_TAB,  LT_BSPC,  TD_ENT,  LT_LEFT, AT_DOWN, GT_UP,  CT_RGHT},
   },
 
 // ...................................................................... Qwerty
@@ -201,13 +237,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |------+------+------+------+------+------+------+------+------+------+------+------|
   // | Ctrl |  GUI |  Alt |  Esc | Space|  Tab | Bksp |  Ent | Left | Down |  Up  |Right |
   // `-----------------------------------------------------------------------------------'
-
+/*
   [_QWERTY] = {
     {KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_T,    KC_Y,     KC_Y,    KC_U,    KC_I,    KC_O,   KC_P   },
     {KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_G,    KC_H,     KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN},
     {KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    LT_TAB,    LT_BSPC,     KC_N,    KC_M,    KC_COMM, KC_DOT, TD_QUOT},
     {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  TD_SPC,  LT_BSPC, LT_BSPC,  TD_ENT,  LT_LEFT, AT_DOWN, GT_UP,  CT_RGHT},
-  },
+  },*/
 
 /* Mouse and Number layer Wide
  * ,-----------------------------------------------------------------------------------.
@@ -254,20 +290,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // http://www.keyboard-layout-editor.com/#/gists/3e7b27b824d0c8b71f07354170756803
 
   // ,-----------------------------------------------------------------------------------.
-  // |   Q  |   W  |   F  |   P  |   B  | Caps |^Shift|   J  |   L  |   U  |   Y  |   :  |
+  // |   Q  |   W  |   F  |   P  |   B  |^Shift|^Shift|   J  |   L  |   U  |   Y  |   :  |
   // |------+------+------+------+------+-------------+------+------+------+------+------|
   // |   A  |   R  |   S  |   T  |   G  | ^Alt | ^GUI |   K  |   N  |   E  |   I  |   O  |
   // |------+------+------+------+------+------|------+------+------+------+------+------|
-  // |   Z  |   X  |   C  |   D  |   V  | ↑Alt | ↑GUI |   M  |   H  |   /  |   ?  |   "  |
+  // |   Z  |   X  |   C  |   D  |   V  |  Tab |  Ins |   M  |   H  |   /  |   ?  |   "  |
   // |------+------+------+------+------+------+------+------+------+------+------+------|
   // | Ctrl |  GUI |  Alt |  Esc |  f() |  Tab |  Del |   -  | Left | Down |  Up  |Right |
   // `-----------------------------------------------------------------------------------'
 
   [_LCOLEMAK] = {
-    {S(KC_Q), S(KC_W), S(KC_F), S(KC_P), S(KC_B), TD_CAPS, OS_CSFT, S(KC_J), S(KC_L), S(KC_U), S(KC_Y), KC_EXLM},
+    {S(KC_Q), S(KC_W), S(KC_F), S(KC_P), S(KC_B), OS_CSFT, OS_CSFT, S(KC_J), S(KC_L), S(KC_U), S(KC_Y), KC_EXLM},
     {S(KC_A), S(KC_R), S(KC_S), S(KC_T), S(KC_G), OS_CALT, OS_CGUI, S(KC_K), S(KC_N), S(KC_E), S(KC_I), S(KC_O)},
     {S(KC_Z), S(KC_X), S(KC_C), S(KC_D), S(KC_V), LT_TAB,  KC_INS,  S(KC_M), S(KC_H), KC_SLSH, KC_QUES, TD_QUOT},
-    {OS_CTL,   OS_GUI, OS_ALT,  LT_ESC,  ___x___, KC_DEL,  KC_DEL,  KC_MINS, PS_LEFT, S_DOWN,  S_UP,    S_RGHT },
+    {OS_CTL,   OS_GUI, OS_ALT,  LT_ESC,  ___x___, LT_TAB,  KC_DEL,  KC_MINS, PS_LEFT, S_DOWN,  S_UP,    S_RGHT },
   },
 
   // ,-----------------------------------------------------------------------------------.
@@ -277,14 +313,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |------+------+------+------+------+------|------+------+------+------+------+------|
   // |   Z  |   X  |   C  |   D  |   V  | ↑Tab | Bksp |   M  |   H  |   ~  |   `  |   @  |
   // |------+------+------+------+------+------+------+------+------+------+------+------|
-  // | Ctrl |  GUI |  Alt |  Esc |   _  |  Tab |  Tab |  f() | Left | Down |  Up  |Right |
+  // | Ctrl |  GUI |  Alt |  Esc |   _  | ↑Tab | Bksp |  f() | Left | Down |  Up  |Right |
   // `-----------------------------------------------------------------------------------'
 
   [_RCOLEMAK] = {
     {S(KC_Q), S(KC_W), S(KC_F), S(KC_P), S(KC_B), TD_CAPS, OS_CSFT, S(KC_J), S(KC_L), S(KC_U), S(KC_Y), KC_COLN},
     {S(KC_A), S(KC_R), S(KC_S), S(KC_T), S(KC_G), OS_SALT, OS_SGUI, S(KC_K), S(KC_N), S(KC_E), S(KC_I), S(KC_O)},
     {S(KC_Z), S(KC_X), S(KC_C), S(KC_D), S(KC_V), PS_TAB,  LT_BSPC, S(KC_M), S(KC_H), UK_TILD, UK_HASH,  UK_AT },
-    {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  KC_UNDS, LT_TAB,  LT_TAB,  ___x___, PS_LEFT, S_DOWN,  S_UP,    S_RGHT },
+    {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  KC_UNDS, PS_TAB,  LT_BSPC, ___x___, PS_LEFT, S_DOWN,  S_UP,    S_RGHT },
   },
 
 // ................................................................ Shift QWERTY
@@ -298,7 +334,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |------+------+------+------+------+------+------+------+------+------+------+------|
   // | Ctrl |  GUI |  Alt |  Esc |  f() |  Tab |  Del |   -  | Left | Down |  Up  |Right |
   // `-----------------------------------------------------------------------------------'
-
+/*
   [_LQWERTY] = {
     {S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), TD_CAPS, OS_CSFT, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P)},
     {S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), OS_SALT, OS_SGUI, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN},
@@ -321,7 +357,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), OS_CALT, OS_CGUI, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN},
     {S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), PS_TAB, LT_BSPC, S(KC_N), S(KC_M), UK_TILD, KC_GRV,  KC_DQT },
     {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  KC_UNDS, PS_TAB,  LT_BSPC, ___x___, PS_LEFT, S_DOWN,  S_UP,    S_RGHT },
-  },
+  },*/
 
   /* LOWERM Wide
    * ,-----------------------------------------------------------------------------------.
@@ -416,7 +452,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // '-----------------------------------------------------------------------------------'
 
   [_REGHEX] = {
-    {___x___, KC_QUES, KC_PLUS, UK_TILD, KC_WHOM, KC_MSEL, KC_MSTP, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, ___x___},
+    {___x___, KC_QUES, KC_PLUS, UK_TILD, KC_WHOM, KC_MSTP, KC_MSTP, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, ___x___},
     {___x___, KC_WBAK, KC_WREF, KC_WFWD, KC_WSTP, KC_EJCT, KC_MPLY, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, ___x___},
     {___x___, TD_LT,   KC_GT,   KC_EQL,  KC_WSCH, ___x___, ___x___, KC_MUTE, KC_BTN3, KC_WH_D, KC_WH_U, ___x___},
     {___x___, ___x___, ___x___, KC_COLN, ___x___, ___x___, ___x___, ___x___, KC_MPRV,  KC_VOLD, KC_VOLU, KC_MNXT},
@@ -459,10 +495,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // '-----------------------------------------------------------------------------------'
 
   [_FNCKEY] = {
-    {_______, _______, _______, _______, _______, KC_CALC, KC_MYCM, _______, KC_F7,   KC_F8,   KC_F9,   KC_F12 },
-    {OS_SFT,  OS_CTL,  OS_GUI,  OS_ALT,  TD_SEND, _______, _______, _______, KC_F4,   KC_F5,   KC_F6,   KC_F11 },
+    {_______, _______, _______, _______, _______, _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F12 },
+    {OS_SFT,  OS_CTL,  OS_GUI,  OS_ALT,  TD_SEND, KC_CALC, KC_MYCM, _______, KC_F4,   KC_F5,   KC_F6,   KC_F11 },
     {_______, _______, _______, _______, KC_EQL,  ___x___, KC_APP,  KC_PLUS, KC_F1,   KC_F2,   KC_F3,   KC_F10 },
-    {_______, _______, _______, _______, _______, ___x___, ___x___, ___x___, _______, _______, _______, _______},
+    {_______, _______, _______, _______, _______, ___x___, ___x___, KC_PLUS, _______, _______, _______, _______},
   },
 
 // ................................................................ Adjust Layer
@@ -481,10 +517,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_ADJUST] = {
     {KC_PWR, KC_POWER, _______, KC_SLEP, KC_WAKE, _______, _______, BACKLIT, _______, _______, _______, RESET  },
-    {AG_NORM, MUV_DE,  AU_OFF,  MU_OFF,  _______, _______, _______, QWERTY,  COLEMAK, _______, _______, _______},
+    {AG_NORM, MUV_DE,  AU_OFF,  MU_OFF,  _______, _______, _______, _______, COLEMAK, _______, _______, _______},
     {AG_SWAP, MUV_IN,  AU_ON,   MU_ON,   KC_EQL,  KC_MENU, ___x___, _______, _______, TD_LT,   KC_GT,   _______},
-    {_______, _______, _______, _______, _______, ___x___, ___x___, _______, _______, _______, _______, _______},
+    {KC_FN3,   KC_FN1,  KC_FN4,  _______, KC_EQL,  ___x___, ___x___, _______, _______, _______, _______, _______},
   },
+};
+
+const uint16_t PROGMEM fn_actions[] = {
+  ACTION_SWAP_HANDS_TAP_KEY(KC_SPC),
+  ACTION_SWAP_HANDS_TOGGLE(),
+  ACTION_SWAP_HANDS_TAP_TOGGLE(),
+  ACTION_SWAP_HANDS_ON(),
+  ACTION_SWAP_HANDS_OFF(),
 };
 
 #ifdef AUDIO_ENABLE
@@ -494,7 +538,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                            ,Q__NOTE(_E7)
 float tone_startup  [][2] = SONG   (ZELDA_PUZZLE);
 float tone_colemak  [][2] = SONG   (COLEMAK_SOUND);
-float tone_qwerty   [][2] = SONG   (QWERTY_SOUND);
+//float tone_qwerty   [][2] = SONG   (QWERTY_SOUND);
 //float tone_mouse    [][2] = SONG   (ZELDA_PUZZLE);
 //float tone_plover   [][2] = SONG   (PLOVER_SOUND);
 //float tone_plover_gb[][2] = SONG   (PLOVER_GOODBYE_SOUND);
@@ -829,7 +873,7 @@ void colemak(keyrecord_t *record)
     _RSHIFT = _RCOLEMAK;
   }
 }
-
+/*
 void qwerty(keyrecord_t *record)
 {
   if (record->event.pressed) {
@@ -842,7 +886,7 @@ void qwerty(keyrecord_t *record)
     _RSHIFT = _RQWERTY;
   }
 }
-/*
+*
 void mouse(keyrecord_t *record)
 {
   if (record->event.pressed) {
@@ -949,7 +993,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
       break;
     case COLEMAK:
       colemak(record);
-      return false;
+      return false;/*
     case QWERTY:
       qwerty(record);
       return false;
@@ -963,7 +1007,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
         //unregister_code(KC_RSFT);
       }
       return false;
-      break;/*
+      break;*
     case MOUSE:
       mouse(record);
       return false;*

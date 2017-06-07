@@ -14,6 +14,7 @@ AUDIO_ENABLE     = yes  # audio output on port C6
 UNICODE_ENABLE   = no   # unicode
 BLUETOOTH_ENABLE = no   # enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE  = no   # enable WS2812 RGB underlight.  Do not enable this with audio at the same time.
+ONEHAND_ENABLE   = yes  # rotate the keyboard by 180 degrees to change MIT to grid
 
 # do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no   # breathing sleep LED during USB suspend
