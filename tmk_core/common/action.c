@@ -83,12 +83,15 @@ void action_exec(keyevent_t event)
 }
 
 #ifdef ONEHAND_ENABLE
-bool swap_hands = true;
+bool swap_hands = false;
 
 void process_hand_swap(keyevent_t *event) {
     static swap_state_row_t swap_state[MATRIX_ROWS];
+    
+    //  Apply persistant transformation
+    event->key = key_swap_config[event->key.row][event->key.col];
 
-    keypos_t pos = event->key;
+    keypos_t pos =  event->key;
     swap_state_row_t col_bit = (swap_state_row_t)1<<pos.col;
     bool do_swap = event->pressed ? swap_hands :
                                     swap_state[pos.row] & (col_bit);

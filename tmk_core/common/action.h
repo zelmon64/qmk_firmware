@@ -70,6 +70,7 @@ extern bool disable_action_cache;
 #ifdef ONEHAND_ENABLE
 extern bool swap_hands;
 extern const keypos_t hand_swap_config[MATRIX_ROWS][MATRIX_COLS];
+extern const keypos_t  key_swap_config[MATRIX_ROWS][MATRIX_COLS];
 #if (MATRIX_COLS <= 8)
 typedef  uint8_t    swap_state_row_t;
 #elif (MATRIX_COLS <= 16)

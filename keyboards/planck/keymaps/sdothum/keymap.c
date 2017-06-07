@@ -361,42 +361,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  KC_UNDS, PS_TAB,  LT_BSPC, ___x___, PS_LEFT, S_DOWN,  S_UP,    S_RGHT },
   },*/
 
-  /* LOWERM Wide
-   * ,-----------------------------------------------------------------------------------.
-   * | Eject|      |      |      |      |      |      |      |      |      |      |      |
-   * |------+------+------+------+------+-------------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |      |      |
-   * |------+------+------+------+------+------|------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      | Mute | Vol+ | Play |
-   * |------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |    Space    |      |      | Prev | Vol- | Next |
-   * `-----------------------------------------------------------------------------------'
-   *
-  [_LMOUSE] = {
-    {KC_EJCT, _______, _______, _______, _______, MOUSE,   COLEMAK, _______, _______, KC_PGUP, _______, KC_MSTP},
-    {_______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_PGDN, KC_END,  _______},
-    {_______, _______, _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLU, KC_MPLY, _______},
-    {_______, _______, _______, _______, ___x___, KC_SPC,  KC_SPC,  ___x___, KC_MPRV, KC_VOLD, KC_MNXT, _______}
-  },*/
-
-  /* RAISEM Wide
-   * ,-----------------------------------------------------------------------------------.
-   * |      |      |      |      |      |      |      |      |      |      |      |      |
-   * |------+------+------+------+------+-------------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |      |      |
-   * |------+------+------+------+------+------|------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |      |      |Pg Up |      |
-   * |------+------+------+------+------+------+------+------+------+------+------+------|
-   * |      |      |      |      |      |     Tab     |      |      | Home |Pg Dn | End  |
-   * `-----------------------------------------------------------------------------------'
-   *
-  [_RMOUSE] = {
-    {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
-    {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______},
-    {_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_PGUP, _______},
-    {_______, _______, _______, _______, _______, KC_TAB,  KC_TAB,  _______, _______, KC_HOME, KC_PGDN, KC_END }
-  }*/
-
 // ......................................................... Number Keypad Layer
 //
 // http://www.keyboard-layout-editor.com/#/gists/538d5196b49574fffda305a0f845c794
@@ -412,10 +376,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // '-----------------------------------------------------------------------------------'
 
   [_NUMBER] = {
-    {TD_LCBR, UK_PND,  UK_EURO, OS_CALT, KC_RCBR, _______, KC_SLCK, KC_NLCK, KC_KP_7,    KC_KP_8,  KC_KP_9,    KC_PSLS},
-    {TD_LPRN, OS_CTL,  OS_GUI,  OS_ALT,  KC_RPRN, _______, _______, KC_PSCR, KC_KP_4,    KC_KP_5,  KC_KP_6,    KC_PAST},
-    {TD_LBRC, TD_LT,   KC_GT,   OS_SALT, KC_RBRC, ___x___, ___x___, KC_CIRC, KC_KP_1,    KC_KP_2,  KC_KP_3,    KC_PMNS},
-    {___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, KC_PEQL, KC_KP_0,    KC_PDOT,  KC_COLN, KC_PPLS},
+    {TD_LCBR, UK_PND,  UK_EURO, OS_CALT, KC_RCBR, _______, KC_SLCK, KC_NLCK, KC_KP_7, KC_KP_8, KC_KP_9, KC_PSLS},
+    {TD_LPRN, OS_CTL,  OS_GUI,  OS_ALT,  KC_RPRN, _______, _______, KC_PSCR, KC_KP_4, KC_KP_5, KC_KP_6, KC_PAST},
+    {TD_LBRC, TD_LT,   KC_GT,   OS_SALT, KC_RBRC, ___x___, ___x___, KC_CIRC, KC_KP_1, KC_KP_2, KC_KP_3, KC_PMNS},
+    {___x___, ___x___, ___x___, ___x___, KC_FN5,  ___x___, ___x___, KC_PEQL, KC_KP_0, KC_PDOT, KC_COLN, KC_PPLS},
   },
 
 // ................................................................ Symbol Layer
@@ -436,7 +400,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {TD_LCBR, KC_DOT,  KC_ASTR, KC_AMPR, KC_RCBR, _______, _______, KC_PGUP, KC_HOME, KC_UP,   KC_END,  _______},
     {TD_LPRN, KC_CIRC, KC_PERC, KC_DLR,  KC_RPRN, _______, _______, KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, MO_RHEX},
     {TD_LBRC, KC_GRV,  UK_NOT,  UK_PND,  KC_RBRC, ___x___, ___x___, _______, KC_PGDN, KC_PGUP, _______, _______},
-    {___x___, ___x___, ___x___, UK_BSLS, PS_PIPE, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___, ___x___},
+    {___x___, ___x___, ___x___, UK_BSLS, PS_PIPE, ___x___, ___x___, KC_FN5,  ___x___, ___x___, ___x___, ___x___},
   },
 
 // ....................................................... Number Symbol Overlay
@@ -531,6 +495,7 @@ const uint16_t PROGMEM fn_actions[] = {
   ACTION_SWAP_HANDS_TAP_TOGGLE(),
   ACTION_SWAP_HANDS_ON(),
   ACTION_SWAP_HANDS_OFF(),
+  ACTION_SWAP_HANDS_TAP_TOGGLE(),
 };
 
 #ifdef AUDIO_ENABLE
@@ -1056,7 +1021,7 @@ void led_set_user(uint8_t usb_led)
     {
             // If NUM LED is turning off...
             PLAY_NOTE_ARRAY(tone_numlk_off, false, LEGATO);
-    }
+    }/*
     else if ((usb_led & (1<<USB_LED_SCROLL_LOCK)) && !(old_usb_led & (1<<USB_LED_SCROLL_LOCK)))
     {
             // If SCROLL LK LED is turning on...
@@ -1066,7 +1031,7 @@ void led_set_user(uint8_t usb_led)
     {
             // If SCROLL LED is turning off...
             PLAY_NOTE_ARRAY(tone_scroll_off, false, LEGATO);
-    }
+    }*/
   }
   old_usb_led = usb_led;
 }
