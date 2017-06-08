@@ -248,7 +248,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // http://www.keyboard-layout-editor.com/#/gists/3e7b27b824d0c8b71f07354170756803
 
   // ,-----------------------------------------------------------------------------------.
-  // |   Q  |   W  |   F  |   P  |   B  |^Shift|^Shift|   J  |   L  |   U  |   Y  |   :  |
+  // |   Q  |   W  |   F  |   P  |   B  |^Shift|^Shift|   J  |   L  |   U  |   Y  |   !  |
   // |------+------+------+------+------+-------------+------+------+------+------+------|
   // |   A  |   R  |   S  |   T  |   G  | ^Alt | ^GUI |   K  |   N  |   E  |   I  |   O  |
   // |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -269,7 +269,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |------+------+------+------+------+-------------+------+------+------+------+------|
   // |   A  |   R  |   S  |   T  |   G  | ↑Alt | ↑GUI |   K  |   N  |   E  |   I  |   O  |
   // |------+------+------+------+------+------|------+------+------+------+------+------|
-  // |   Z  |   X  |   C  |   D  |   V  | ↑Tab | Bksp |   M  |   H  |   ~  |   `  |   @  |
+  // |   Z  |   X  |   C  |   D  |   V  | ↑Tab | Bksp |   M  |   H  |   #  |   ~  |   @  |
   // |------+------+------+------+------+------+------+------+------+------+------+------|
   // | Ctrl |  GUI |  Alt |  Esc |   _  | ↑Tab | Bksp |  f() | Left | Down |  Up  |Right |
   // `-----------------------------------------------------------------------------------'
@@ -277,7 +277,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_RCOLEMAK] = {
     {S(KC_Q), S(KC_W), S(KC_F), S(KC_P), S(KC_B), TD_CAPS, OS_CSFT, S(KC_J), S(KC_L), S(KC_U), S(KC_Y), KC_COLN},
     {S(KC_A), S(KC_R), S(KC_S), S(KC_T), S(KC_G), OS_SALT, OS_SGUI, S(KC_K), S(KC_N), S(KC_E), S(KC_I), S(KC_O)},
-    {S(KC_Z), S(KC_X), S(KC_C), S(KC_D), S(KC_V), PS_TAB,  LT_BSPC, S(KC_M), S(KC_H), UK_TILD, UK_HASH,  UK_AT },
+    {S(KC_Z), S(KC_X), S(KC_C), S(KC_D), S(KC_V), PS_TAB,  LT_BSPC, S(KC_M), S(KC_H), UK_HASH, UK_TILD,  UK_AT },
     {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  KC_UNDS, PS_TAB,  LT_BSPC, ___x___, PS_LEFT, S_DOWN,  S_UP,    S_RGHT },
   },
 #ifndef MOUSEKEY_ENABLE
@@ -364,20 +364,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // http://www.keyboard-layout-editor.com/#/gists/a5af1dc7defc033feac465339f0cd6bc
 
   // .-----------------------------------------------------------------------------------.
-  // |      |   ?  |   +  |   ~  | Wb_Hm| Stop | Stop |M5_Clk|M1_Clk|   ↑  |M2_Clk|      |
+  // |      |   ?  |   +  |   ~  | Wb_Hm| Stop | Stop |M5_Clk|M1_Clk|   ↑  |M2_Clk|Select|
   // |-----------------------------------------------------------------------------------|
   // |  f() | Wb_Bk| Wb_Rf| Wb_Fd|Wb_Stp| Eject| Play |M4_Clk|   ←  |   ↓  |   →  |  f() |
   // |-----------------------------------------------------------------------------------|
-  // |      |   <  |   >  |   =  |Wb_Sch|      |      | Mute |M3_Clk| MW_Up| MW_Dn|      |
+  // |      |   <  |   >  |   =  |Wb_Sch|MW_Lft|MW_Rgt| MW_Up|M3_Clk| Play | Mute |      |
   // |-----------------------------------------------------------------------------------|
-  // |      |      |      |   :  |      |      |      |      | Prev | Vol- | Vol+ | Next |
+  // |      |      |      |   :  |      |      |      | MW_Dn| Prev | Vol- | Vol+ | Next |
   // '-----------------------------------------------------------------------------------'
 #ifdef MOUSEKEY_ENABLE
   [_REGHEX] = {
-    {___x___, KC_QUES, KC_PLUS, UK_TILD, KC_WHOM, KC_MSTP, KC_MSTP, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, ___x___},
+    {___x___, KC_QUES, KC_PLUS, UK_TILD, KC_WHOM, KC_MSTP, KC_MSTP, KC_BTN5, KC_BTN1, KC_MS_U, KC_BTN2, KC_MSEL},
     {___x___, KC_WBAK, KC_WREF, KC_WFWD, KC_WSTP, KC_EJCT, KC_MPLY, KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, ___x___},
-    {___x___, TD_LT,   KC_GT,   KC_EQL,  KC_WSCH, ___x___, ___x___, KC_MUTE, KC_BTN3, KC_WH_D, KC_WH_U, ___x___},
-    {___x___, ___x___, ___x___, KC_COLN, ___x___, ___x___, ___x___, ___x___, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT},
+    {___x___, TD_LT,   KC_GT,   KC_EQL,  KC_WSCH, KC_WH_L, KC_WH_R, KC_WH_U, KC_BTN3, KC_MPLY, KC_MUTE, ___x___},
+    {___x___, ___x___, ___x___, KC_COLN, KC_LSFT, ___x___, ___x___, KC_WH_D, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT},
   },
 #else
   [_REGHEX] = {
@@ -418,16 +418,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |-----------------------------------------------------------------------------------|
   // | Ctrl |  GUI |  Alt | Shift| Send |      |      |      |  F4  |  F5  |  F6  |  F11 |
   // |-----------------------------------------------------------------------------------|
-  // |      |      |      |      |      |  f() |  App |   +  |  F1  |  F2  |  F3  |  F10 |
+  // |      |      |      |      |      |  f() |  App |      |  F1  |  F2  |  F3  |  F10 |
   // |-----------------------------------------------------------------------------------|
-  // |      |      |      |      |      |  f() |  f() |  f() |      |      |      |      |
+  // |      |      |      |      |      |  f() |  f() |   +  |  App |      |      |      |
   // '-----------------------------------------------------------------------------------'
 
   [_FNCKEY] = {
     {_______, _______, _______, _______, _______, _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F12 },
     {OS_SFT,  OS_CTL,  OS_GUI,  OS_ALT,  TD_SEND, KC_CALC, KC_MYCM, _______, KC_F4,   KC_F5,   KC_F6,   KC_F11 },
-    {_______, _______, _______, _______, KC_EQL,  ___x___, KC_APP,  KC_PLUS, KC_F1,   KC_F2,   KC_F3,   KC_F10 },
-    {_______, _______, _______, _______, _______, ___x___, ___x___, KC_PLUS, _______, _______, _______, _______},
+    {_______, _______, _______, _______, KC_EQL,  ___x___, KC_APP,  _______, KC_F1,   KC_F2,   KC_F3,   KC_F10 },
+    {_______, _______, _______, _______, _______, ___x___, ___x___, KC_PLUS, KC_APP,  _______, _______, _______},
   },
 
 // ................................................................ Adjust Layer
@@ -441,21 +441,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |------+------+------+------+------+------|------+------+------+------+------+------|
   // |AGswap|Voice+|Aud on|Mus on|MIDIon| Menu |  f() |      |      |   <  |   >  |      |
   // |------+------+------+------+------+------+------+------+------+------+------+------|
-  // |      |      |      |      |   =  |  f() |  f() |      |      |      |      |Plover|
+  // |      |      |      | Menu |   =  |  f() |  f() |      |      |      |      |Plover|
   // `-----------------------------------------------------------------------------------'
 #ifndef MOUSEKEY_ENABLE
   [_ADJUST] = {
     {KC_PWR, KC_POWER, _______, KC_SLEP, KC_WAKE, _______, _______, BACKLIT, _______, TG_NKRO, _______, RESET  },
     {AG_NORM, MUV_DE,  AU_OFF,  MU_OFF,  MI_OFF,  _______, _______, QWERTY,  COLEMAK, _______, _______, _______},
     {AG_SWAP, MUV_IN,  AU_ON,   MU_ON,   MI_ON,   KC_MENU, ___x___, _______, _______, TD_LT,   KC_GT,   _______},
-    {_______, _______, _______, _______, KC_EQL,  ___x___, ___x___, _______, _______, _______, _______, PLOVER },
+    {_______, _______, _______, KC_MENU, KC_EQL,  ___x___, ___x___, _______, _______, _______, _______, PLOVER },
   },
 #else
   [_ADJUST] = {
     {KC_PWR, KC_POWER, _______, KC_SLEP, KC_WAKE, _______, _______, BACKLIT, _______, TG_NKRO, _______, RESET  },
     {AG_NORM, MUV_DE,  AU_OFF,  MU_OFF,  MI_OFF,  _______, _______, _______, COLEMAK, _______, _______, _______},
     {AG_SWAP, MUV_IN,  AU_ON,   MU_ON,   MI_ON,   KC_MENU, ___x___, _______, _______, TD_LT,   KC_GT,   _______},
-    {_______, _______, _______, _______, KC_EQL,  ___x___, ___x___, _______, _______, _______, _______, _______},
+    {_______, _______, _______, KC_MENU, KC_EQL,  ___x___, ___x___, _______, _______, _______, _______, _______},
   },
 #endif
 };
