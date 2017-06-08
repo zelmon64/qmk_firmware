@@ -21,4 +21,9 @@
 // default QWERTY keymap unless
 #define COLEMAK COLEMAK
 
+
+//#define VIBRATO_ENABLE
+//#define VIBRATO_STRENGTH_ENABLE
+
+
 #endif
