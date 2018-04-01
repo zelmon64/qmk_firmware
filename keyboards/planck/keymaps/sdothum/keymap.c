@@ -137,22 +137,22 @@ enum planck_keycodes {
 #define TG_NKRO      MAGIC_TOGGLE_NKRO
 
 // modifier keys
-#define AT_DOWN ALT_T(KC_UP)
+#define AT_DOWN ALT_T(KC_DOWN)
 #define CT_RGHT CTL_T(KC_RGHT)
-#define GT_UP   GUI_T(KC_DOWN)
-#define S_DOWN  S    (KC_UP)
+#define GT_UP   GUI_T(KC_UP)
+#define S_DOWN  S    (KC_DOWN)
 #define S_END   S    (KC_END)
 #define S_HOME  S    (KC_HOME)
 #define S_LEFT  S    (KC_LEFT)
 #define S_PGDN  S    (KC_PGDN)
 #define S_PGUP  S    (KC_PGUP)
 #define S_RGHT  S    (KC_RGHT)
-#define S_UP    S    (KC_DOWN)
+#define S_UP    S    (KC_UP)
 
 // tap dance keys
 enum tap_dance {
   _CAPS = 0
- ,_ENT
+   ,_ENT
  ,_LBRC
  ,_LCBR
  ,_LPRN
@@ -206,11 +206,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ...................................................................... Qwerty
 
   // ,-----------------------------------------------------------------------------------.
-  // |   Q  |   W  |   E  |   R  |   T  | Caps |^Shift|   Y  |   U  |   I  |   O  |   P  |
+  // |   Q  |   W  |   E  |   R  |   T  | Caps | Caps |   Y  |   U  |   I  |   O  |   P  |
   // |------+------+------+------+------+-------------+------+------+------+------+------|
-  // |   A  |   S  |   D  |   F  |   G  | ^Alt | ^GUI |   H  |   J  |   K  |   L  |   ;  |
+  // |   A  |   S  |   D  |   F  |   G  | ^Alt | BLit |   H  |   J  |   K  |   L  |   ;  |
   // |------+------+------+------+------+------|------+------+------+------+------+------|
-  // |   Z  |   X  |   C  |   V  |   B  | ↑Alt | ↑GUI |   N  |   M  |   ,  |   .  |   "  |
+  // |   Z  |   X  |   C  |   V  |   B  |  Tab | Bksp |   N  |   M  |   ,  |   .  |   "  |
   // |------+------+------+------+------+------+------+------+------+------+------+------|
   // | Ctrl |  GUI |  Alt |  Esc | Space|  Tab | Bksp |  Ent | Left | Down |  Up  |Right |
   // `-----------------------------------------------------------------------------------'
@@ -219,7 +219,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     {KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    TD_CAPS,  TD_CAPS,  KC_Y,    KC_U,    KC_I,    KC_O,   KC_P   },
     {KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    OS_CALT,  BACKLIT,  KC_H,    KC_J,    KC_K,    KC_L,   KC_SCLN},
     {KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    LT_TAB,   LT_BSPC,  KC_N,    KC_M,    KC_COMM, KC_DOT, TD_QUOT},
-    {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  TD_SPC,  LT_BSPC,  LT_BSPC,  TD_ENT,  LT_LEFT, AT_DOWN, GT_UP,  CT_RGHT},
+    {OS_CTL,  OS_GUI,  OS_ALT,  LT_ESC,  TD_SPC,  LT_TAB,   LT_BSPC,  TD_ENT,  LT_LEFT, AT_DOWN, GT_UP,  CT_RGHT},
   },
 
 // ...................................................................... Plover
@@ -288,7 +288,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |------+------+------+------+------+-------------+------+------+------+------+------|
   // |   A  |   S  |   D  |   F  |   G  | ^Alt | ^GUI |   H  |   J  |   K  |   L  |   :  |
   // |------+------+------+------+------+------|------+------+------+------+------+------|
-  // |   Z  |   X  |   C  |   V  |   B  | ↑Alt | ↑GUI |   N  |   M  |   /  |   ?  |   "  |
+  // |   Z  |   X  |   C  |   V  |   B  |  Tab |  Ins |   N  |   M  |   /  |   ?  |   "  |
   // |------+------+------+------+------+------+------+------+------+------+------+------|
   // | Ctrl |  GUI |  Alt |  Esc |  f() |  Tab |  Del |   -  | Left | Down |  Up  |Right |
   // `-----------------------------------------------------------------------------------'
@@ -296,7 +296,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LQWERTY] = {
     {S(KC_Q), S(KC_W), S(KC_E), S(KC_R), S(KC_T), TD_CAPS, OS_CSFT, S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P)},
     {S(KC_A), S(KC_S), S(KC_D), S(KC_F), S(KC_G), OS_SALT, OS_SGUI, S(KC_H), S(KC_J), S(KC_K), S(KC_L), KC_COLN},
-    {S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), LT_TAB,  KC_DEL,  S(KC_N), S(KC_M), KC_SLSH, KC_QUES, KC_DQT },
+    {S(KC_Z), S(KC_X), S(KC_C), S(KC_V), S(KC_B), LT_TAB,  KC_INS,  S(KC_N), S(KC_M), KC_SLSH, KC_QUES, KC_DQT },
     {OS_CTL,   OS_GUI, OS_ALT,  LT_ESC,  ___x___, LT_TAB,  KC_DEL,  KC_MINS, PS_LEFT, S_DOWN,  S_UP,    S_RGHT },
   },
 
@@ -305,7 +305,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // |------+------+------+------+------+-------------+------+------+------+------+------|
   // |   A  |   S  |   D  |   F  |   G  | ^Alt | ^GUI |   H  |   J  |   K  |   L  |   :  |
   // |------+------+------+------+------+------|------+------+------+------+------+------|
-  // |   Z  |   X  |   C  |   V  |   B  | ↑Alt | ↑GUI |   N  |   M  |   ~  |   `  |   "  |
+  // |   Z  |   X  |   C  |   V  |   B  | ↑Tab | Bksp |   N  |   M  |   ~  |   `  |   "  |
   // |------+------+------+------+------+------+------+------+------+------+------+------|
   // | Ctrl |  GUI |  Alt |  Esc |   _  | ↑Tab | Bksp |  f() | Left | Down |  Up  |Right |
   // `-----------------------------------------------------------------------------------'
@@ -414,7 +414,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // http://www.keyboard-layout-editor.com/#/gists/d937a7bb9dec5dc6e73b28bf95d4d517
 
   // .-----------------------------------------------------------------------------------.
-  // |      |      |      |      |      |      |      |      |  F7  |  F8  |  F9  |  F12 |
+  // |      |      |      | Pause|      |      |      |      |  F7  |  F8  |  F9  |  F12 |
   // |-----------------------------------------------------------------------------------|
   // | Ctrl |  GUI |  Alt | Shift| Send |      |      |      |  F4  |  F5  |  F6  |  F11 |
   // |-----------------------------------------------------------------------------------|
@@ -424,7 +424,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // '-----------------------------------------------------------------------------------'
 
   [_FNCKEY] = {
-    {_______, _______, _______, _______, _______, _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F12 },
+    {_______, _______, _______, KC_PAUS, _______, _______, _______, _______, KC_F7,   KC_F8,   KC_F9,   KC_F12 },
     {OS_SFT,  OS_CTL,  OS_GUI,  OS_ALT,  TD_SEND, KC_CALC, KC_MYCM, _______, KC_F4,   KC_F5,   KC_F6,   KC_F11 },
     {_______, _______, _______, _______, KC_EQL,  ___x___, KC_APP,  _______, KC_F1,   KC_F2,   KC_F3,   KC_F10 },
     {_______, _______, _______, _______, _______, ___x___, ___x___, KC_PLUS, KC_APP,  _______, _______, _______},
